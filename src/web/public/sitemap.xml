@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<!-- Main Pages -->
+	<url type="Main Pages" title="Home">
+		<loc>http://magnon.net</loc>
+	</url>
+	<url type="Main Pages" title="About Us">
+		<loc>http://magnon.net/about</loc>
+	</url>
+	<url type="Main Pages" title="Games">
+		<loc>http://magnon.net/games</loc>
+	</url>
+	<url type="Main Pages" title="Sitemap">
+		<loc>http://magnon.net/sitemap</loc>
+	</url>
+	<url type="Main Pages" title="Cookie Policy">
+		<loc>http://magnon.net/cookies</loc>
+	</url>
+	<!-- Game Pages -->
+	<url type="Games" title="Dig Snow!">
+		<loc>http://magnon.net/games/digsnow</loc>
+	</url>
+</urlset>

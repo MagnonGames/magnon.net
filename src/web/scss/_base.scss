@@ -1,0 +1,41 @@
+$backgroundColor: rgba(255, 255, 255, 1);
+$foregroundColor: rgba(0, 0, 0, 1);
+$highlightColor: rgba(50, 166, 212, 1);
+$headerColor: $highlightColor;
+
+$warningColor: rgba(255, 238, 88, 1);
+$errorColor: rgba(229, 115, 115, 1);
+
+$border: 1px solid darken(transparentize($backgroundColor, 0.2), 40);
+
+$headerHeight: 50px;
+$bigHeaderHeight: 60px;
+$footerHeight: 300px;
+$defaultPadding: 10px;
+$maxContentWidth: 800px;
+$cardPadding: $defaultPadding * 2 $defaultPadding * 3;
+
+$font: 'Raleway', sans-serif;
+
+@mixin circleImage($radius:"") {
+	border-radius: 50%;
+	@if $radius != "" {
+		width: $radius;
+		height: $radius;
+	}
+}
+
+$largeWidth: 1200px;
+$mediumWidth: 580px;
+
+@mixin large {
+	@media (min-width: $largeWidth) {
+		@content;
+	}
+}
+
+@mixin medium {
+	@media (min-width: $mediumWidth) {
+		@content;
+	}
+}

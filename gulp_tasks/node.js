@@ -1,0 +1,46 @@
+var gulp = require("gulp"),
+	minifyHtml = require("gulp-htmlmin"),
+	gutil = require("gulp-util"),
+	imagemin = require("gulp-imagemin"),
+	merge = require("merge-stream");
+
+var baseSrc = "src/node/",
+	baseOut = "out/production/node/";
+
+if (gutil.env.dev) baseOut = "out/development/node/";
+
+gulp.task("node", ["html"], function() {
+	gulp.src([
+		baseSrc + "server.js",
+		baseSrc + "start_node.sh",
+		"package.json"
+	])
+		.pipe(gulp.dest(baseOut + "src/"));
+
+	return gulp.src(baseSrc + "Dockerfile")
+		.pipe(gulp.dest(baseOut));
+});
+
+gulp.task("html", function() {
+	var stream = merge(
+		gulp.src(["./src/web/svg/**/*.svg"], { base: "./src/web/" })
+			.pipe(gutil.env.dev ? gutil.noop() : imagemin({
+				multipass: true
+			})),
+		gulp.src("./src/web/html/**/*")
+			.pipe(minifyHtml({
+				// This is basically just making sure it isn't trying to
+				// minify any nunjucks code since gulp-htmlmin doesn't
+				// support doing that.
+				ignoreCustomFragments: [(/\{\%[^\%]*?\%\}(\s)?/g),
+				(/\{\{[^\{]*?\}\}(\s)?/g), (/<%[\s\S]*?%>/), (/<\?[\s\S]*?\?>/)]
+			}))
+	);
+	return stream.pipe(gulp.dest(baseOut + "src/views/"));
+});
+
+function getSVGforHTML() {
+	var srcPath = baseSrc + "svg/";
+
+	return
+}

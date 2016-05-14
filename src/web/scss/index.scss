@@ -1,0 +1,48 @@
+@import "base";
+
+body {
+	color: white;
+	min-height: 100vh;
+}
+
+#top {
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
+#mainContent {
+	text-shadow: 0 4px 20px transparentize(black, 0.4);
+
+	background: linear-gradient(to right, #83a4d4 0%, #abecf0 100%);
+	background-color: lighten($highlightColor, 20%);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin: 0;
+	max-width: none;
+	height: 100%;
+}
+
+#quotes {
+	.quote {
+		margin: 150px 30px;
+
+		h2 {
+			font-style: italic;
+			display: inline;
+			line-height: 40px;
+
+			&:before, &:after {
+				content: "\"";
+			}
+		}
+
+		span {
+			display: inline;
+			&:before {
+				margin-left: 30px;
+				margin-right: 10px;
+				content: " - ";
+			}
+		}
+	}
+}

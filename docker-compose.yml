@@ -1,0 +1,12 @@
+node:
+    build: ./node
+    restart: always
+nginx:
+    build: ./nginx
+    expose:
+        - "80"
+    links:
+        - node:node1
+    environment:
+        - VIRTUAL_HOST=magnon.net,www.magnon.net
+    restart: always

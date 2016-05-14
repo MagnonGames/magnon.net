@@ -1,0 +1,4 @@
+The Magnon website is made with love by the following people:
+
+Tobi (magnontobi) - Front-end and server configuration
+Johan (dunderboy) - Back-end (kinda, not really)

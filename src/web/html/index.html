@@ -1,0 +1,30 @@
+{% extends "layouts/standard.html" %}
+
+{% set title = "Home" %}
+{% set description = "This is the home page for magnon.net with a general introduction of who we are." %}
+{% set skipStyle = true %}
+{% set skipScript = true %}
+{% block style %}
+<link rel="stylesheet" type="text/css" href="/css/index.css" />
+{% endblock %}
+{% block script %}
+<script src="/js/index.js" async></script>
+{% endblock %}
+
+{% block content %}
+	<div id="quotes">
+		<h1>We're Magnon</h1>
+		<div class="quote">
+			<h2>We could make games the usual way, but I think we can do better than that</h2>
+			<span>Tobi</span>
+		</div>
+		<div class="quote">
+			<h2>If it doesn't explode, it's still a success</h2>
+			<span>Andre</span>
+		</div>
+		<div class="quote">
+			<h2>Impossible is just another word for challange</h2>
+			<span>Markus</span>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+node:
+    build: ./out/development/node
+    volumes:
+        - ./out/development/node/src/views:/usr/src/views:ro
+        - ./out/development/node/src/server.js:/usr/src/server.js:ro
+    ports:
+        - "8001:8001"
+    restart: never
+nginx:
+    build: ./out/development/nginx
+    ports:
+        - "8080:80"
+    environment:
+        VIRTUAL_HOST: localhost
+    volumes:
+        - ./out/development/nginx/src:/var/www:ro
+        - ./out/development/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+        - ./out/development/nginx/default_server.conf:/etc/nginx/default_server.conf:ro
+    restart: never
