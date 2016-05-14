@@ -9,4 +9,6 @@ nginx:
         - node:node1
     environment:
         - VIRTUAL_HOST=magnon.net,www.magnon.net
+        - LETSENCRYPT_HOST=magnon.net,www.magnon.net
+        - LETSENCRYPT_EMAIL
     restart: always
