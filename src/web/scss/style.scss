@@ -322,7 +322,7 @@ nav {
 			}
 		}
 
-		#copyright {
+		#license {
 			position: absolute;
 			width: 100%;
 			bottom: 0;
@@ -333,6 +333,13 @@ nav {
 			padding: 0 $defaultPadding;
 			box-sizing: border-box;
 			font-size: 13px;
+			display: inline-block;
+
+			a {
+				display: inline-block;
+				font-size: 13px;
+				text-decoration: underline;
+			}
 		}
 
 		a {
