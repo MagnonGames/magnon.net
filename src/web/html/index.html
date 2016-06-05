@@ -12,19 +12,21 @@
 {% endblock %}
 
 {% block content %}
-	<div id="quotes">
-		<h1>We're Magnon</h1>
-		<div class="quote">
-			<h2>We could make games the usual way, but I think we can do better than that</h2>
-			<span>Tobi</span>
-		</div>
-		<div class="quote">
-			<h2>If it doesn't explode, it's still a success</h2>
-			<span>Andre</span>
-		</div>
-		<div class="quote">
-			<h2>Impossible is just another word for challange</h2>
-			<span>Markus</span>
+	<div id="splash">
+		<span class="center hello">
+			Hello there!
+		</span>
+		<span class="center welcome">
+			Welcome to...
+		</span>
+		<span class="center logo">
+			{% include "./svg/topLogo.svg" %}
+		</span>
+
+		<div class="center links">
+			<a href="/games" class="link">Games</a>
+			|
+			<a href="/about" class="link">About</a>
 		</div>
 	</div>
 {% endblock %}
