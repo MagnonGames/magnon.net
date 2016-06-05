@@ -12,8 +12,7 @@ body {
 #mainContent {
 	text-shadow: 0 4px 20px transparentize(black, 0.4);
 
-	background: linear-gradient(to right, #83a4d4 0%, #abecf0 100%);
-	background-color: lighten($highlightColor, 20%);
+	background-color: $highlightColor;
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
