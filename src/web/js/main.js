@@ -1,5 +1,3 @@
-/* global initParallax, docCookies */
-
 var done,
 
 	overflow,
