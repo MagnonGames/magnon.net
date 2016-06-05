@@ -8,7 +8,16 @@ var gulp = require("gulp"),
 	concatCss = require("gulp-concat-css"),
 	svg2png = require("gulp-svg2png"),
 	imagemin = require("gulp-imagemin"),
-	gutil = require("gulp-util");
+	gutil = require("gulp-util"),
+
+	browserify = require("browserify"),
+	watchify = require("watchify"),
+	babelify = require("babelify"),
+	source = require("vinyl-source-stream"),
+	buffer = require("vinyl-buffer"),
+	sourcemaps = require("gulp-sourcemaps"),
+
+	nginx = require("./nginx.js");
 
 var baseSrc = "src/web/",
 	baseOut = "out/production/web/";
@@ -41,17 +50,60 @@ gulp.task("css", function() {
 });
 
 gulp.task("js", function() {
+	buildJS(false);
+});
+
+function buildJS(watch) {
 	var srcPath = baseSrc + "js/";
 
-	gulp.src([srcPath + "cookies.js", srcPath + "logic.js"])
-		.pipe(concat("logic.js"))
-		.pipe(gutil.env.dev ? gutil.noop() : uglify())
-		.pipe(gulp.dest(baseOut + "js/"));
-	return gulp.src([srcPath + "cookies.js", srcPath + "index.js", srcPath + "logic.js"])
-		.pipe(concat("index.js"))
-		.pipe(gutil.env.dev ? gutil.noop() : uglify())
-		.pipe(gulp.dest(baseOut + "js/"));
-});
+	createBundle(
+		[srcPath + "main.js"],
+		"logic.js", watch
+	);
+	return createBundle(
+		[srcPath + "main.js", srcPath + "index.js"],
+		"index.js", watch
+	);
+}
+
+exports.buildJS = buildJS;
+
+function createBundle(entries, bundleName, watch) {
+	var browserifyInstance = browserify({
+			entries: entries,
+			debug: gutil.env.dev,
+			cache: {},
+		    packageCache: {},
+		    fullPaths: watch
+		}).transform("babelify", {
+			presets: ["es2015"]
+		});
+
+	var b = watch ? watchify(browserifyInstance) : browserifyInstance;
+
+ 	var build = function() {
+		return b.bundle()
+			.pipe(source(bundleName))
+			.pipe(buffer())
+			.pipe(gutil.env.dev ? sourcemaps.init({ loadMaps: true }) : gutil.noop())
+			.pipe(gutil.env.dev ? sourcemaps.write(".") : gutil.noop())
+			.pipe(gutil.env.dev ? gutil.noop() : uglify())
+			.pipe(gulp.dest(baseOut + "js/"));
+	}
+
+	if (watch) {
+		b.on("update", function() {
+			gutil.log("Rebundling...");
+			build();
+		});
+		b.on("log", function(e) {
+			gutil.log("Bundling Successful: " + gutil.colors.gray(e));
+			nginx.build();
+		});
+	}
+
+	return build();
+}
 
 function generateFavicon(src, scale, out, name) {
 	return gulp.src(src)
