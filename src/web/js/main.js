@@ -2,11 +2,13 @@ import Cookies from "cookies-js";
 
 import Notifications from "./main/notifications.js";
 import SideBar from "./main/sideBar.js";
+import TwitchChecker from "./main/twitchChecker.js";
 
 class Main {
 	constructor() {
 		this.notifications = new Notifications();
 		this.sideBar = new SideBar();
+		this.twitchChecker = new TwitchChecker();
 
 		if (Cookies.get("cwa") != "true") {
 			this.notifications.showNotification("Cookies",
