@@ -25,7 +25,11 @@ var baseSrc = "src/web/",
 if (gutil.env.dev) baseOut = "out/development/web/";
 
 gulp.task("css", function() {
-	var srcPath = baseSrc + "scss/";
+	var srcPath = baseSrc + "scss/",
+		browsers = [
+			"> 1%",
+			"Opera > 35"
+		];
 
 	gulp.src([srcPath + "_base.scss", srcPath + "style.scss"])
 		.pipe(sass({
@@ -33,7 +37,7 @@ gulp.task("css", function() {
 			indentedSyntax: false,
 			errLogToConsole: true
 		}))
-		.pipe(gutil.env.dev ? gutil.noop() : prefixer("last 2 versions"))
+		.pipe(prefixer({ browsers: browsers }))
 		.pipe(gutil.env.dev ? gutil.noop() : minify())
 		.pipe(gulp.dest(baseOut + "css/"));
 
@@ -43,7 +47,7 @@ gulp.task("css", function() {
 			indentedSyntax: false,
 			errLogToConsole: true
 		}))
-		.pipe(gutil.env.dev ? gutil.noop() : prefixer("last 2 versions"))
+		.pipe(prefixer({ browsers: browsers }))
 		.pipe(concatCss("index.css"))
 		.pipe(gutil.env.dev ? gutil.noop() : minify())
 		.pipe(gulp.dest(baseOut + "css/"));
