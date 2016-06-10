@@ -63,6 +63,8 @@ function init() {
 
 	let splash = splashFromArray(timers);
 	splash.run();
+
+	splashElement.style.display = "block";
 }
 
 if (document.readyState != "loading") init();
