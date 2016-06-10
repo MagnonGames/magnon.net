@@ -22,6 +22,10 @@ body {
 }
 
 #splash {
+	* {
+		display: inline-block;
+	}
+
 	.center {
 		margin: auto;
 		position: absolute;
@@ -40,6 +44,7 @@ body {
 		font-size: 30px;
 		height: 50px;
 		line-height: 50px;
+		bottom: 200px;
 	}
 
 	.logo, .logo svg {
@@ -59,12 +64,12 @@ body {
 		bottom: -250px;
 
 		a {
-			color: darken(white, 10);
 			text-decoration: none;
+			color: white;
 		}
 
 		a:hover {
-			color: white;
+			text-decoration: underline;
 		}
 	}
 }

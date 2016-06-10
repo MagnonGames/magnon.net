@@ -25,6 +25,7 @@
   "dependencies": {
     "cookies-js": "^1.2.2",
     "express": "^4.13.4",
-    "nunjucks": "^2.3.0"
+    "nunjucks": "^2.3.0",
+    "splasher.js": "^0.3.0"
   }
 }
