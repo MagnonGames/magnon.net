@@ -11,6 +11,10 @@ body {
 	min-height: 100%;
 	position: relative;
 	overflow-x: hidden;
+
+	*::selection {
+		background: $highlightColor;
+	}
 }
 
 a {
