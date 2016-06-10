@@ -24,5 +24,5 @@ function init() {
 	window.main = new Main();
 }
 
-if (document.readyStatus == "complete") init();
+if (document.readyState != "loading") init();
 else document.addEventListener("DOMContentLoaded", init);
