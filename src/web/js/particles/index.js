@@ -65,6 +65,9 @@ export default class BackgroundParticles {
 		window.addEventListener("mousedown", e => {
 			this.splash(e.pageX, e.pageY);
 		});
+		window.addEventListener("touchdown", e => {
+			this.splash(e.clientX, e.clientY);
+		});
 	}
 
 	splash(x, y, emitterScale) {
