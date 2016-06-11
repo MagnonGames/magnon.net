@@ -15,8 +15,6 @@ export default class BackgroundParticles {
 
 		this.container = new PIXI.Container();
 
-		let texture = PIXI.Texture.fromImage("/images/circle.png");
-
 		this.particleGenerator = new ParticleGenerator();
 
 		this.emitter = this.particleGenerator.getNewBackgroundEmitter(
