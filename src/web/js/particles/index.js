@@ -2,6 +2,7 @@ import * as PIXI from "pixi.js";
 import * as Particles from "pixi-particles";
 
 import ParticleGenerator from "./particleGenerator.js";
+import Konami from "./konami.js";
 
 export default class BackgroundParticles {
 	constructor(element) {
@@ -36,6 +37,20 @@ export default class BackgroundParticles {
 		window.addEventListener("touchdown", e => {
 			this.splash(e.clientX, e.clientY);
 		});
+
+		let konami = new Konami(() => {
+			if (!this.easterEggActivated) {
+				this.easterEggActivated = true;
+
+				window.setInterval(() => {
+					this.splash(
+						Math.random() * window.innerWidth,
+						Math.random() * window.innerHeight,
+						Math.random() * 5
+					);
+				}, 150);
+			}
+		});
 	}
 
 	splash(x, y, emitterScale) {
@@ -52,7 +67,7 @@ export default class BackgroundParticles {
 
 		window.setTimeout(() => {
 			this.smallParticles.splice(this.smallParticles.indexOf(emitter), 1);
-		}, 1000 * emitterScale);
+		}, 1300 * emitterScale);
 	}
 
 	resize(width, height) {
