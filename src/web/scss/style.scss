@@ -328,6 +328,36 @@ nav {
 				margin: 15px 0;
 			}
 
+			a {
+				span {
+					transition: color 0.2s;
+				}
+			}
+
+			#twitchLink:hover {
+				span {
+					color: #6441A5;
+				}
+			}
+
+			#gplusLink:hover {
+				span {
+					color: #C53929;
+				}
+			}
+
+			#twitterLink:hover {
+				span {
+					color: #1DA1F2;
+				}
+			}
+
+			#youtubeLink:hover {
+				span {
+					color: #CC181E;
+				}
+			}
+
 			&:last-of-type {
 				margin-bottom: 110px;
 			}
