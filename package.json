@@ -28,6 +28,6 @@
     "nunjucks": "^2.3.0",
     "pixi-particles": "^1.6.6",
     "pixi.js": "^3.0.11",
-    "splasher.js": "^0.3.0"
+    "splasher.js": "^0.3.1"
   }
 }
