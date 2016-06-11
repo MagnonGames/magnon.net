@@ -17,13 +17,6 @@ export default class TwitchChecker {
 			callback(resp.stream != null);
 		}
 
-		xhr.onerror = () => {
-			window.main.notifications.showNotification("An Error Occured!",
-				"Twitch stream status failed to check! " +
-				"This is most likely because of a problem with your internet " +
-				"connection, but it might also be a fault of Twitch.");
-		}
-
 		xhr.open("GET", "https://api.twitch.tv/kraken/streams/themagnon", true);
 		xhr.send();
 	}
