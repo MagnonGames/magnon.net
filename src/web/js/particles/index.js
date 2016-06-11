@@ -123,6 +123,7 @@ export default class BackgroundParticles {
 		this.emitter.spawnRect = new PIXI.Rectangle(0, height, width, 10);
 		this.emitter.minLifetime = (5 * height * 0.001);
 		this.emitter.maxLifetime = (7 * height * 0.001);
+		this.renderer.resize(width, height);
 	}
 
 	run() {
