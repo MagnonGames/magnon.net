@@ -4,6 +4,8 @@ import {
 	interpolation
 } from "splasher.js";
 
+import BackgroundParticles from "./particles";
+
 function init() {
 	let splashElement = document.getElementById("splash"),
 		hello = splashElement.getElementsByClassName("hello")[0],
@@ -65,6 +67,12 @@ function init() {
 	splash.run();
 
 	splashElement.style.display = "block";
+
+	let backgroundParticles = new BackgroundParticles(
+		document.getElementById("backgroundParticlesContainer")
+	);
+
+	backgroundParticles.run();
 }
 
 if (document.readyState != "loading") init();
