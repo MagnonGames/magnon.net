@@ -6,9 +6,13 @@ export default class Konami {
 		document.addEventListener("keydown", e => {
 			this.keys.push(e.keyCode);
 
-			if (this.check() && this.keys.length == this.konamiCode.length) {
+			if (this.check()) {
+				if (this.keys.length == this.konamiCode.length) {
+					this.keys = [];
+					callbackOnEntered();
+				}
+			} else {
 				this.keys = [];
-				callbackOnEntered();
 			}
 		});
 	}
