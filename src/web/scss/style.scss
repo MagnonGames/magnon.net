@@ -82,10 +82,6 @@ a {
 	@include large {
 		height: $bigHeaderHeight - $defaultPadding * 2;
 	}
-
-	.logoBlueSquare {
-		fill: transparent !important;
-	}
 }
 
 nav {
@@ -108,12 +104,6 @@ nav {
 		bottom: 0;
 		box-sizing: border-box;
 		padding: $defaultPadding;
-
-		.aboveLink {
-			display: block;
-			margin: 0;
-			margin-bottom: $defaultPadding * 2;
-		}
 
 		a {
 			display: inline-block;
@@ -295,10 +285,6 @@ nav {
 			margin: 0 auto;
 			right: 0;
 			left: 0;
-
-			h4 {
-				margin-top: 0;
-			}
 		}
 
 		.footerSection {
