@@ -3,9 +3,12 @@ import Cookies from "cookies-js";
 import Notifications from "./main/notifications.js";
 import SideBar from "./main/sideBar.js";
 import TwitchChecker from "./main/twitchChecker.js";
+import createGA from "./main/googleAnalytics.js";
 
 class Main {
 	constructor() {
+		createGA();
+
 		this.notifications = new Notifications();
 		this.sideBar = new SideBar();
 		this.twitchChecker = new TwitchChecker();
