@@ -289,14 +289,13 @@ nav {
 
 		.footerSection {
 			display: inline-block;
-			padding: $cardPadding;
+			padding: 20px 10px;
 			box-sizing: border-box;
 			width: 100%;
 			margin: 0 auto;
 
 			#streamStatus {
 				display: block;
-				height: 16px;
 
 				* {
 					display: inline-block;
@@ -305,6 +304,7 @@ nav {
 				a {
 					font-size: 14px;
 					vertical-align: middle;
+					margin: 0;
 				}
 			}
 
