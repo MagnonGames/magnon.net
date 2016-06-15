@@ -24,9 +24,9 @@ gulp.task("node", ["html"], function() {
 gulp.task("html", function() {
 	var stream = merge(
 		gulp.src(["./src/web/svg/**/*.svg"], { base: "./src/web/" })
-			.pipe(gutil.env.dev ? gutil.noop() : imagemin({
-				multipass: true
-			})),
+			.pipe(gutil.env.dev ? gutil.noop() : imagemin([
+				imagemin.svgo({ plugins: [{ mergePaths: false }] })
+			])),
 		gulp.src("./src/web/html/**/*")
 			.pipe(minifyHtml({
 				// This is basically just making sure it isn't trying to
