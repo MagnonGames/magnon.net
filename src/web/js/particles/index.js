@@ -27,7 +27,12 @@ export default class BackgroundParticles {
 		this.smallParticles = [];
 
 		window.addEventListener("resize", () => {
-			this.resize(window.innerWidth, window.innerHeight);
+			// Chrome started to cause problems here, see following link:
+			// http://www.quirksmode.org/blog/archives/2016/02/chrome_change_b.html
+			this.resize(
+				document.documentElement.clientWidth,
+				document.documentElement.clientHeight
+			);
 		});
 		this.resize(window.innerWidth, window.innerHeight);
 
