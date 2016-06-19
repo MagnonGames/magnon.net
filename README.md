@@ -1,4 +1,7 @@
 # The Magnon Website
+[![Dependency Status](https://david-dm.org/theMagnon/magnon.net.svg)](https://david-dm.org/theMagnon/magnon.net)
+[![devDependency Status](https://david-dm.org/theMagnon/magnon.net/dev-status.svg)](https://david-dm.org/theMagnon/magnon.net#info=devDependencies)
+
 This is all the source code that goes into making the Magnon website. It contains not only all the source code for the website itself, but also some of the tools we use to publish it and maintain it.
 
 ## Debugging
