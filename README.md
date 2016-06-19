@@ -6,6 +6,20 @@ This is all the source code that goes into making the Magnon website. It contain
 
 To debug the website, you have to (PR welcome to fix this) be running Linux and have docker, docker-compose and a recent version of node installed. While it would be nice to provide instructions on how to get all the dependencies for every distribution, that would most likely end up being too much for a little readme and therefore, we have decided only to provide full instructions for Ubuntu.
 
+### Dependencies
+
+Here is a (slightly incomplete list) of all the dependencies we use and why:
+- Browserify - For browser JS dependencies
+- Babel (babelify) - To compile ES6 to ES5
+- Nunjucks - HTML templating language we use
+- Express - Web framework for the Node side of things
+- Nginx - Web server for serving static files and to reverse-proxy the Node server
+- Docker - I think that makes us modern, right?
+- Docker-compose - Because I still haven't figured out pure docker xP
+- Gulp - Our build system which we abuse slightly (maybe a lot)
+- Sass (scss) - CSS precomiler we like
+- ... Bunch of other ones, but this list should give you the general idea
+
 ### Getting dependencies
 Here's how you would install the docker part:
 ```
