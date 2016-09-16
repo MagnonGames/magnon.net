@@ -115,8 +115,16 @@ nav {
 			}
 		}
 
-		.svg-link {
-			fill: lighten($foregroundColor, 40) !important;
+		#svg-googleplus {
+			fill: #c53929 !important;
+		}
+
+		#svg-twitter {
+			fill: #1da1f2 !important;
+		}
+
+		#svg-youtube {
+			fill: #cd201f !important;
 		}
 	}
 
