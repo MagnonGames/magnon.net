@@ -38,7 +38,7 @@ a {
 	left: 0;
 	right: 0;
 	height: $headerHeight;
-	background-color: transparentize($headerColor, 0.2);
+	background-color: $headerColor;
 	box-shadow: 0 0 20px transparentize($foregroundColor, 0.5);
 	z-index: 5;
 	transition: height 0.2s;
