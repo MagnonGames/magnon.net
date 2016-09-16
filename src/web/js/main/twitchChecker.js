@@ -18,6 +18,7 @@ export default class TwitchChecker {
 		}
 
 		xhr.open("GET", "https://api.twitch.tv/kraken/streams/themagnon", true);
+		xhr.setRequestHeader("Client-ID", "4q9kg6kuvdragw2stqq4lkrqvullu59");
 		xhr.send();
 	}
 }
