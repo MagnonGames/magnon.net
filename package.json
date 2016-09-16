@@ -1,4 +1,6 @@
 {
+  "repository": "https://github.com/theMagnon/magnon.net",
+  "license": "(MIT AND CC-BY-4.0)",
   "devDependencies": {
     "babel-preset-es2015": "^6.9.0",
     "babelify": "^7.3.0",
