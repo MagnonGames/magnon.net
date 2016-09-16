@@ -4,7 +4,7 @@ export default class TwitchChecker {
 
 		this.fetchSteamStatus(online => {
 			if (online) {
-				this.dot.style.fill = "#4CAF50";
+				this.dot.style.fill = "#E53935";
 			}
 		});
 	}

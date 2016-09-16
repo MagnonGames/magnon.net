@@ -318,6 +318,10 @@ nav {
 					vertical-align: middle;
 					margin: 0;
 				}
+
+				#streamStatusDot {
+					fill: transparentize(white, 0.7);
+				}
 			}
 
 			.social {
