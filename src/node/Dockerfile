@@ -1,4 +1,4 @@
-FROM node:5
+FROM mhart/alpine-node:6
 
 ENV NODE_ENV production
 WORKDIR /usr/src
