@@ -1,8 +1,8 @@
-import * as Particles from "pixi-particles";
+import * as PIXI from "pixi.js";
 
 export default class ParticleGenerator {
 	getNewBackgroundEmitter(container, width, height) {
-		return new Particles.Emitter(
+		return new PIXI.particles.Emitter(
 			container, [PIXI.Texture.fromImage("/images/circle.png")],
 			{
 				scale: {
