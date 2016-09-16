@@ -1,4 +1,5 @@
 import * as PIXI from "pixi.js";
+import * as Particles from "pixi-particles";
 
 export default class ParticleGenerator {
 	getNewBackgroundEmitter(container, width, height) {
@@ -40,7 +41,7 @@ export default class ParticleGenerator {
 	}
 
 	getNewSplashEmitter(container, x, y, emitterScale) {
-		return new Particles.Emitter(
+		return new PIXI.particles.Emitter(
 			container, [PIXI.Texture.fromImage("/images/circle.png")],
 			{
 				scale: {
