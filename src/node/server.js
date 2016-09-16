@@ -37,6 +37,15 @@ function startServer() {
 			}
 		});
 	});
+	router.get("/error/:error", (req, res) => {
+		res.render("error/" + req.params.error, {}, (err, html) => {
+			if (err) {
+				res.status(500).send("Couldn't find error page");
+			} else {
+				res.send(html);
+			}
+		});
+	});
 
 	app.use(router);
 

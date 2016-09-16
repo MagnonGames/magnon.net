@@ -1,32 +1,16 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>404 - Magnon</title>
-		<link rel="stylesheet" type="text/css" href="/css/style.css" />
-		<style>
-			#links {
-				display: block;
-				margin: 30px 0;
-			}
+{% extends "layouts/standard.html" %}
 
-			#links a {
-				font-size: 25px;
-				margin-right: 20px;
-			}
-		</style>
-	</head>
-	<body>
-		<div id="mainContent">
-			<div class="section">
-				<h1>YOU GOT A 404 ERROR!</h1>
-				<p>That means the page cannot be found. If you believe this is an error, contact us <a href="/contact">here</a>.</p>
-				<span id="links">
-					<a href="/">Home</a>
-					<a href="/about">About</a>
-					<a href="/games">Games</a>
-				</span>
-			</div>
-		</div>
-	</body>
-</html>
+{% set title = "404" %}
+{% set description = "Awww... You got a 404 error... Poor you." %}
+
+{% block content %}
+	<div class="section">
+		<h1>YOU GOT A 404 ERROR!</h1>
+		<p>That means the page couldn't be found. If you believe this is a serious
+			error (you know, something that REALLY shouldn't be here), you can
+			always contact us <a href="/contact">here</a>.
+			<br /><br />
+			TODO: Make this page cool. ;P
+		</p>
+	</div>
+{% endblock %}
