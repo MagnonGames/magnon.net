@@ -1,0 +1,71 @@
+@import "base";
+
+#mainContentWrapper {
+	overflow: hidden;
+}
+
+#mainContent {
+	position: relative;
+	margin: 0 auto;
+	max-width: $maxContentWidth;
+	min-height: 100%;
+	padding-top: ($headerHeight + $defaultPadding * 2);
+	box-sizing: border-box;
+
+	@include medium {
+		padding-bottom: $footerHeight;
+	}
+
+	@include large {
+		padding-top: ($bigHeaderHeight + $defaultPadding * 2);
+	}
+}
+
+.section {
+	background-color: $backgroundColor;
+	box-shadow: 0 3px 10px transparentize($foregroundColor, 0.8);
+	padding: $cardPadding;
+	margin-bottom: 20px;
+	text-align: center;
+
+	p, ul, pre, code {
+		text-align: left;
+	}
+
+	img {
+		margin: $defaultPadding * -2 $defaultPadding * -3;
+		margin-bottom: -24px;
+		width: calc(100% + #{$defaultPadding * 6});
+		height: auto;
+	}
+
+	@include medium {
+		text-align: left;
+	}
+}
+
+.imageText {
+	display: block;
+	margin: 0 auto;
+
+	@include medium {
+		min-height: 200px;
+	}
+	img {
+		@include circleImage();
+		width: 60%;
+		margin: $defaultPadding * 2;
+		box-sizing: border-box;
+		box-shadow: 0 3px 10px transparentize($foregroundColor, 0.8);
+		@include medium {
+			float: left;
+			width: 200px - $defaultPadding * 2 * 2;
+			height: 200px - $defaultPadding * 2 * 2;
+		}
+	}
+	p, h3 {
+		@include medium {
+			text-align: left;
+		}
+	}
+}

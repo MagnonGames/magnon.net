@@ -31,24 +31,13 @@ gulp.task("css", function() {
 			"Opera > 35"
 		];
 
-	gulp.src([srcPath + "_base.scss", srcPath + "style.scss"])
+	return gulp.src(srcPath + "**/*.scss")
 		.pipe(sass({
 			includedPaths: [srcPath],
 			indentedSyntax: false,
 			errLogToConsole: true
 		}))
 		.pipe(prefixer({ browsers: browsers }))
-		.pipe(gutil.env.dev ? gutil.noop() : minify())
-		.pipe(gulp.dest(baseOut + "css/"));
-
-	return gulp.src([srcPath + "_base.scss", srcPath + "style.scss", srcPath + "index.scss"])
-		.pipe(sass({
-			includedPaths: [srcPath],
-			indentedSyntax: false,
-			errLogToConsole: true
-		}))
-		.pipe(prefixer({ browsers: browsers }))
-		.pipe(concatCss("index.css"))
 		.pipe(gutil.env.dev ? gutil.noop() : minify())
 		.pipe(gulp.dest(baseOut + "css/"));
 });

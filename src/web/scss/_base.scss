@@ -1,21 +1,7 @@
-$backgroundColor: rgba(255, 255, 255, 1);
-$foregroundColor: rgba(0, 0, 0, 1);
-$highlightColor: rgba(50, 166, 212, 1);
-$headerColor: $highlightColor;
-
-$warningColor: rgba(255, 238, 88, 1);
-$errorColor: rgba(229, 115, 115, 1);
-
-$border: 1px solid darken(transparentize($backgroundColor, 0.2), 40);
-
-$headerHeight: 50px;
-$bigHeaderHeight: 60px;
-$footerHeight: 300px;
-$defaultPadding: 10px;
-$maxContentWidth: 800px;
-$cardPadding: $defaultPadding * 2 $defaultPadding * 3;
-
-$font: 'Raleway', sans-serif;
+@import "defs";
+@import "fonts";
+@import "responsive";
+@import "footer";
 
 @mixin circleImage($radius:"") {
 	border-radius: 50%;
@@ -25,37 +11,227 @@ $font: 'Raleway', sans-serif;
 	}
 }
 
-$largeWidth: 1200px;
-$mediumWidth: 580px;
+html {
+	height: 100%;
+}
 
-@mixin large {
-	@media (min-width: $largeWidth) {
-		@content;
+body {
+	margin: 0;
+	background-color: darken($backgroundColor, 5);
+	text-align: center;
+	min-height: 100%;
+	position: relative;
+	overflow-x: hidden;
+	font-family: $font;
+
+	*::selection {
+		background: $highlightColor;
 	}
 }
 
-@mixin medium {
-	@media (min-width: $mediumWidth) {
-		@content;
+a {
+	transition: color 0.2s;
+	color: $highlightColor;
+
+	&:visited {
+		color: darken($highlightColor, 15);
+	}
+	&:hover {
+		color: lighten($highlightColor, 20);
+	}
+	&:active {
+		color: darken($highlightColor, 10);
 	}
 }
 
-// Google Fonts
+#top {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: $headerHeight;
+	background-color: $headerColor;
+	box-shadow: 0 0 20px transparentize($foregroundColor, 0.5);
+	z-index: 5;
+	transition: height 0.2s;
 
-/* latin-ext */
-@font-face {
-  font-family: 'Raleway';
-  font-style: normal;
-  font-weight: 300;
-  src: local('Raleway Light'), local('Raleway-Light'), url(https://fonts.gstatic.com/s/raleway/v11/ZKwULyCG95tk6mOqHQfRBCEAvth_LlrfE80CYdSH47w.woff2) format('woff2');
-  unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+	@include large {
+		height: $bigHeaderHeight;
+	}
+
+	.overflowIcon {
+		stroke: white !important;
+	}
 }
 
-/* latin */
-@font-face {
-  font-family: 'Raleway';
-  font-style: normal;
-  font-weight: 300;
-  src: local('Raleway Light'), local('Raleway-Light'), url(https://fonts.gstatic.com/s/raleway/v11/-_Ctzj9b56b8RgXW8FArifk_vArhqVIZ0nv9q090hN8.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+.topOverflow {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: $headerHeight;
+	height: $headerHeight;
+	padding: ($headerHeight - 24) / 2;
+	box-sizing: border-box;
+
+	@include large {
+		width: $bigHeaderHeight;
+		height: $bigHeaderHeight;
+		padding: ($bigHeaderHeight - 24) / 2;
+	}
+}
+
+#topLogo svg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	height: $headerHeight - $defaultPadding * 2;
+	max-width: 50%;
+
+	@include large {
+		height: $bigHeaderHeight - $defaultPadding * 2;
+	}
+}
+
+nav {
+	position: fixed;
+	top: 0;
+	left: -90%;
+	bottom: 0;
+	height: 100%;
+	width: 90%;
+	max-width: 300px;
+	background: $backgroundColor;
+	z-index: 10;
+	font-family: $font;
+	user-select: none;
+
+	footer {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		box-sizing: border-box;
+		padding: $defaultPadding;
+
+		a {
+			display: inline-block;
+			margin: 0;
+			margin-right: $defaultPadding * 2;
+
+			&:last-of-type {
+				margin-right: 0;
+			}
+		}
+
+		.svg-googleplus {
+			fill: #c53929 !important;
+		}
+
+		.svg-twitter {
+			fill: #1da1f2 !important;
+		}
+
+		.svg-youtube {
+			fill: #cd201f !important;
+		}
+
+		.svg-twitch {
+			fill: #6441a5 !important;
+		}
+	}
+
+	a {
+		transition: color 0.2s;
+		text-decoration: none;
+		color: lighten($foregroundColor, 40);
+		font-size: 20px;
+		display: block;
+		margin: $defaultPadding * 3;
+
+		&:visited {
+			color: lighten($foregroundColor, 40);
+		}
+		&:hover {
+			color: lighten($foregroundColor, 60);
+		}
+		&:active {
+			color: lighten($foregroundColor, 20);
+		}
+	}
+}
+
+#blackout {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background-color: transparentize($foregroundColor, 0.2);
+	z-index: 5;
+	display: none;
+	opacity: 0;
+}
+
+#notifications {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	max-width: 100%;
+	padding-left: $defaultPadding * 2;
+	box-sizing: border-box;
+
+	.notification {
+		transition: all 0.3s;
+		left: 0px;
+		position: relative;
+		clear: both;
+		float: right;
+		max-height: 600px;
+		max-width: 400px;
+		padding: $defaultPadding $defaultPadding * 2;
+		padding-bottom: $defaultPadding * 1.5;
+		margin-bottom: $defaultPadding * 2;
+		margin-right: $defaultPadding * 2;
+		background-color: lighten($foregroundColor, 15);
+		color: $backgroundColor;
+		box-shadow: 0 5px 15px transparentize($foregroundColor, 0.5);
+		text-align: left;
+		font-family: $font;
+
+		$closeSize: 20px;
+
+		.title {
+			display: block;
+			margin-right: $closeSize + $defaultPadding;
+			margin-bottom: $defaultPadding;
+			line-height: $closeSize + $defaultPadding;
+			font-size: $closeSize;
+		}
+
+		.close {
+			display: block;
+			position: absolute;
+			top: $defaultPadding * 1.5;
+			right: $defaultPadding * 2.5;
+			background-image: url("/images/ui/cross.svg");
+			width: $closeSize;
+			height: $closeSize;
+		}
+	}
+
+	.notification.off {
+		left: 500px;
+	}
+
+	.notification.off.s {
+		max-height: 0px;
+		padding: 0;
+		margin: 0;
+	}
 }
