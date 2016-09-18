@@ -116,32 +116,6 @@ nav {
 		bottom: 0;
 		box-sizing: border-box;
 		padding: $defaultPadding;
-
-		a {
-			display: inline-block;
-			margin: 0;
-			margin-right: $defaultPadding * 2;
-
-			&:last-of-type {
-				margin-right: 0;
-			}
-		}
-
-		.svg-googleplus {
-			fill: #c53929 !important;
-		}
-
-		.svg-twitter {
-			fill: #1da1f2 !important;
-		}
-
-		.svg-youtube {
-			fill: #cd201f !important;
-		}
-
-		.svg-twitch {
-			fill: #6441a5 !important;
-		}
 	}
 
 	a {
@@ -233,5 +207,33 @@ nav {
 		max-height: 0px;
 		padding: 0;
 		margin: 0;
+	}
+}
+
+.socialIcons {
+	.svg-googleplus {
+		fill: #c53929 !important;
+	}
+
+	.svg-twitter {
+		fill: #1da1f2 !important;
+	}
+
+	.svg-youtube {
+		fill: #cd201f !important;
+	}
+
+	.svg-twitch {
+		fill: #6441a5 !important;
+	}
+
+	a {
+		display: inline-block;
+		margin: 0;
+		margin-right: $defaultPadding * 2;
+
+		&:last-of-type {
+			margin-right: 0;
+		}
 	}
 }
