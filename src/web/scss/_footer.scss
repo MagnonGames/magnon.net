@@ -34,6 +34,10 @@
 			left: 0;
 		}
 
+		.streamStatusDot {
+			fill: transparentize(white, 0.7);
+		}
+
 		.footerSection {
 			display: inline-block;
 			padding: 20px 10px;
@@ -52,10 +56,6 @@
 					font-size: 14px;
 					vertical-align: middle;
 					margin: 0;
-				}
-
-				#streamStatusDot {
-					fill: transparentize(white, 0.7);
 				}
 			}
 

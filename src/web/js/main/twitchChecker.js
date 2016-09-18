@@ -1,10 +1,12 @@
 export default class TwitchChecker {
 	constructor() {
-		this.dot = document.getElementById("streamStatusDot");
+		this.dots = document.getElementsByClassName("streamStatusDot");
 
 		this.fetchSteamStatus(online => {
 			if (online) {
-				this.dot.style.fill = "#E53935";
+				for (let dot of this.dots) {
+					dot.style.fill = "#E53935";
+				}
 			}
 		});
 	}
