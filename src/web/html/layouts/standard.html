@@ -1,3 +1,12 @@
+{% macro socialIcons() %}
+	<div class="socialIcons">
+		<a href="https://google.com/+MagnonNet">{% include "../svg/social/googleplus.svg" %}</a>
+		<a href="https://twitter.com/theMagnon">{% include "../svg/social/twitter.svg" %}</a>
+		<a href="https://www.youtube.com/channel/UCZlenKi3wRj3Usc3cXTsA2Q">{% include "../svg/social/youtube.svg" %}</a>
+		<a href="https://www.twitch.tv/themagnon">{% include "../svg/social/twitch.svg" %}</a>
+	</div>
+{% endmacro %}
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -29,10 +38,7 @@
 			<a href="/games">Our Games</a>
 			<a href="/about">About Us</a>
 			<footer>
-				<a href="https://google.com/+MagnonNet">{% include "../svg/social/googleplus.svg" %}</a>
-				<a href="https://twitter.com/theMagnon">{% include "../svg/social/twitter.svg" %}</a>
-				<a href="https://www.youtube.com/channel/UCZlenKi3wRj3Usc3cXTsA2Q">{% include "../svg/social/youtube.svg" %}</a>
-				<a href="https://www.twitch.tv/themagnon">{% include "../svg/social/twitch.svg" %}</a>
+				{{ socialIcons() }}
 			</footer>
 		</nav>
 		<div id="mainContentWrapper">
