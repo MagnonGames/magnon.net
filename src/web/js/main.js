@@ -7,6 +7,8 @@ import createGA from "./main/googleAnalytics.js";
 
 class Main {
 	constructor() {
+		this.spreadLinks();
+
 		createGA();
 
 		this.notifications = new Notifications();
@@ -21,6 +23,19 @@ class Main {
 				() => {
 					Cookies.set("cwa", "true", { expires: Infinity });
 				});
+		}
+	}
+
+	spreadLinks() {
+		const links = document.querySelectorAll("[data-spread]");
+		for (let link of links) {
+			let element = link;
+			while ((element = element.parentElement) && !element.classList.contains("spreadTarget"));
+
+			element.addEventListener("click", () => {
+				window.open(link.href, "_self");
+			});
+			element.style.cursor = "pointer";
 		}
 	}
 }
