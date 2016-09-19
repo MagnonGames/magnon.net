@@ -51,40 +51,26 @@
 		</div>
 		<div id="footer">
 			<div id="footerContent">
-				<div class="footerSection">
+				<div class="navigation footerSection">
 					<a href="/">Home</a>
 					<a href="/about">About</a>
 					<a href="/games">Games</a>
 					<a href="/contact">Contact</a>
 				</div>
-				<div class="footerSection">
-					<div id="streamStatus">
-						<svg width="16" height="16">
-							<circle class="streamStatusDot" cx="8" cy="8" r="4" />
-						</svg>
-						<a id="twitchLink" href="https://www.twitch.tv/themagnon">
-							Watch our <span>Twitch</span> stream!
-						</a>
-					</div>
-					<a id="gplusLink" href="https://plus.google.com/u/0/+MagnonNet" class="social">
-						Follow us on <span>Google+</span>!
-					</a>
-					<a id="twitterLink" href="https://twitter.com/theMagnon" class="social">
-						Follow us on <span>Twitter</span>!
-					</a>
-					<a id="youtubeLink" href="https://www.youtube.com/channel/UCZlenKi3wRj3Usc3cXTsA2Q" class="social">
-						Subscribe to us on <span>YouTube</span>!
-					</a>
+				<div class="announcement footerSection">
+					<span class="footerHeader">We're on GitHub!</span>
+					<p>Not only is this website open-source on GitHub, but we
+							also have a bunch of other projects you can check out
+							<a href="https://github.com/theMagnon">over here</a>!
+					</p>
 				</div>
-				<div class="footerSection">
-					<span class="footerHeader">Beta Site</span>
-					<p>This website is in beta. This means that there may be bugs and new features may be added at any time.</p>
+				<div class="social footerSection">
+					{{ socialIcons() }}
 				</div>
-				<span id="license">
-					This work, unless otherwise noted, is licensed under a<br />
+				<span class="license">
+					This work, unless otherwise noted, is licensed under a
 					<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-						Creative Commons Attribution 4.0 International License
-					</a>.
+						Creative Commons Attribution 4.0 International License</a>.
 				</span>
 			</div>
 		</div>

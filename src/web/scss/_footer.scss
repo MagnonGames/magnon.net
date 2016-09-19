@@ -7,6 +7,7 @@
 	min-height: $footerHeight;
 	width: 100%;
 	box-shadow: inset 0 20px 20px -20px transparentize($foregroundColor, 0.2);
+	position: relative;
 
 	@include medium {
 		position: absolute;
@@ -23,8 +24,9 @@
 	#footerContent {
 		max-width: 100%;
 		width: 100%;
-		height: 100%;
-		position: relative;
+		padding: 20px;
+		padding: 20px;
+		box-sizing: border-box;
 
 		@include medium {
 			width: $maxContentWidth;
@@ -32,124 +34,93 @@
 			margin: 0 auto;
 			right: 0;
 			left: 0;
+			height: 100%;
 		}
 
 		.streamStatusDot {
 			fill: transparentize(white, 0.7);
 		}
 
-		.footerSection {
-			display: inline-block;
-			padding: 20px 10px;
-			box-sizing: border-box;
-			width: 100%;
-			margin: 0 auto;
-
-			#streamStatus {
-				display: block;
-
-				* {
-					display: inline-block;
-				}
-
-				a {
-					font-size: 14px;
-					vertical-align: middle;
-					margin: 0;
-				}
-			}
-
-			.social {
-				display: block;
-				font-size: 14px;
-				margin: 15px 0;
-			}
-
-			a {
-				span {
-					transition: color 0.2s;
-				}
-			}
-
-			#twitchLink:hover {
-				span {
-					color: #6441A5;
-				}
-			}
-
-			#gplusLink:hover {
-				span {
-					color: #C53929;
-				}
-			}
-
-			#twitterLink:hover {
-				span {
-					color: #1DA1F2;
-				}
-			}
-
-			#youtubeLink:hover {
-				span {
-					color: #CC181E;
-				}
-			}
-
-			&:last-of-type {
-				margin-bottom: 110px;
-			}
-
-			@include medium {
-				width: 32%;
-				position: absolute;
-				right: 0;
-				left: 0;
-				&:first-of-type {
-					right: auto;
-				}
-				&:last-of-type {
-					left: auto;
-					margin-bottom: 0;
-				}
-			}
-		}
-
-		#license {
-			position: absolute;
-			width: 100%;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			margin: 0 auto;
-			margin-bottom: $defaultPadding * 2;
-			padding: 0 $defaultPadding;
-			box-sizing: border-box;
-			font-size: 13px;
-			display: inline-block;
-
-			a {
-				display: inline-block;
-				font-size: 13px;
-				text-decoration: underline;
-			}
-		}
-
 		a {
+			color: white;
 			transition: color 0.2s;
-			text-decoration: none;
-			color: $backgroundColor;
-			font-size: 20px;
-			display: block;
-			margin-bottom: $defaultPadding;
 
 			&:visited {
-				color: $backgroundColor;
+				color: transparentize(white, 0.1);
 			}
 			&:hover {
-				color: lighten($backgroundColor, 50);
+				color: transparentize(white, 0.5);
 			}
 			&:active {
-				color: lighten($backgroundColor, 10);
+				color: transparentize(white, 0.2);
+			}
+		}
+
+		$offset: 20px;
+
+		.navigation {
+			text-align: center;
+
+			@include medium {
+				text-align: left;
+				position: absolute;
+				top: $offset; left: $offset;
+			}
+
+			a {
+				text-decoration: none;
+				font-size: 20px;
+				display: block;
+				margin-bottom: 10px;
+			}
+		}
+
+		.announcement {
+			margin: $offset;
+
+			@include medium {
+				position: absolute;
+				top: $offset; right: $offset;
+				text-align: right;
+				width: 50%;
+				margin: 0;
+			}
+		}
+
+		.social {
+			@include medium {
+				position: absolute;
+				left: $offset; bottom: $offset;
+			}
+
+			.socialIcons {
+				.svg-link {
+					fill: white !important;
+				}
+			}
+
+			* {
+				display: inline-block;
+			}
+		}
+
+		.license {
+			font-size: 13px;
+			display: inline-block;
+			margin: $offset;
+			text-align: center;
+
+			@include medium {
+				position: absolute;
+				right: $offset;
+				bottom: $offset;
+				margin: 0;
+				text-align: right;
+				width: 50%;
+			}
+
+			a {
+				display: inline;
 			}
 		}
 	}
