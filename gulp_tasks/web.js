@@ -25,8 +25,10 @@ let baseSrc = "src/web/",
 if (gutil.env.dev) baseOut = "out/development/web/";
 
 const manifestConf = {
+	base: baseOut,
 	merge: true
 };
+const manifestPath = baseOut + "rev-manifest.json";
 
 gulp.task("css", function() {
 	const srcPath = baseSrc + "scss/",
@@ -45,7 +47,7 @@ gulp.task("css", function() {
 		.pipe(gutil.env.dev ? gutil.noop() : minify())
 		.pipe(gutil.env.dev ? gutil.noop() : rev())
 		.pipe(gulp.dest(baseOut + "css/"))
-		.pipe(rev.manifest(manifestConf))
+		.pipe(rev.manifest(manifestPath, manifestConf))
 		.pipe(gulp.dest(baseOut));
 });
 
@@ -92,7 +94,7 @@ function createBundle(entries, bundleName, watch) {
 			.pipe(gutil.env.dev ? gutil.noop() : uglify())
 			.pipe(gutil.env.dev ? gutil.noop() : rev())
 			.pipe(gulp.dest(baseOut + "js/"))
-			.pipe(rev.manifest(manifestConf))
+			.pipe(rev.manifest(manifestPath, manifestConf))
 			.pipe(gulp.dest(baseOut));
 	};
 
