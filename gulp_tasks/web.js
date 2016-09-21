@@ -8,6 +8,9 @@ var gulp = require("gulp"),
 	svg2png = require("gulp-svg2png"),
 	imagemin = require("gulp-imagemin"),
 	gutil = require("gulp-util"),
+	rev = require("gulp-rev"),
+	revReplace = require("gulp-rev-replace"),
+	merge = require("merge-stream"),
 
 	browserify = require("browserify"),
 	watchify = require("watchify"),
@@ -22,6 +25,10 @@ var baseSrc = "src/web/",
 	baseOut = "out/production/web/";
 
 if (gutil.env.dev) baseOut = "out/development/web/";
+
+const manifestConf = {
+	merge: true
+};
 
 gulp.task("css", function() {
 	var srcPath = baseSrc + "scss/",
@@ -38,23 +45,28 @@ gulp.task("css", function() {
 		}))
 		.pipe(prefixer({ browsers: browsers }))
 		.pipe(gutil.env.dev ? gutil.noop() : minify())
-		.pipe(gulp.dest(baseOut + "css/"));
+		.pipe(gutil.env.dev ? gutil.noop() : rev())
+		.pipe(gulp.dest(baseOut + "css/"))
+		.pipe(rev.manifest(manifestConf))
+		.pipe(gulp.dest(baseOut));
 });
 
 gulp.task("js", function() {
-	buildJS(false);
+	return buildJS(false);
 });
 
 function buildJS(watch) {
 	var srcPath = baseSrc + "js/";
 
-	createBundle(
-		[srcPath + "main.js"],
-		"logic.js", watch
-	);
-	return createBundle(
-		[srcPath + "main.js", srcPath + "index.js"],
-		"index.js", watch
+	return merge(
+		createBundle(
+			[srcPath + "main.js"],
+			"logic.js", watch
+		),
+		createBundle(
+			[srcPath + "main.js", srcPath + "index.js"],
+			"index.js", watch
+		)
 	);
 }
 
@@ -80,7 +92,10 @@ function createBundle(entries, bundleName, watch) {
 			.pipe(gutil.env.dev ? sourcemaps.init({ loadMaps: true }) : gutil.noop())
 			.pipe(gutil.env.dev ? sourcemaps.write(".") : gutil.noop())
 			.pipe(gutil.env.dev ? gutil.noop() : uglify())
-			.pipe(gulp.dest(baseOut + "js/"));
+			.pipe(gutil.env.dev ? gutil.noop() : rev())
+			.pipe(gulp.dest(baseOut + "js/"))
+			.pipe(rev.manifest(manifestConf))
+			.pipe(gulp.dest(baseOut));
 	}
 
 	if (watch) {
@@ -126,4 +141,8 @@ gulp.task("public", ["favicon"], function() {
 		.pipe(gulp.dest(baseOut + "public/"));
 });
 
-gulp.task("web", ["favicon", "css", "js", "images", "public"]);
+gulp.task("web", ["favicon", "css", "js", "images", "public"], () => {
+	return gulp.src(["out/production/**/*.html"])
+		.pipe(revReplace({ manifest: gulp.src(baseOut + "rev-manifest.json") }))
+		.pipe(gulp.dest("out/production/"));
+});
