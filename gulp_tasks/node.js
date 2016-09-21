@@ -35,9 +35,3 @@ gulp.task("html", function() {
 	);
 	return stream.pipe(gulp.dest(baseOut + "src/views/"));
 });
-
-function getSVGforHTML() {
-	var srcPath = baseSrc + "svg/";
-
-	return
-}
