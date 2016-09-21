@@ -1,5 +1,6 @@
 var gulp = require("gulp"),
-	gutil = require("gulp-util");
+	gutil = require("gulp-util"),
+	merge = require("merge-stream");
 
 var baseSrc = "./src/nginx",
 	baseOut = "./out/production/nginx/";
@@ -13,14 +14,18 @@ gulp.task("nginx", ["public"], function() {
 function build() {
 	var webBase = "./out/" + (gutil.env.dev ? "development" : "production") + "/web/"
 
-	gulp.src(webBase + "public/**/*")
-		.pipe(gulp.dest(baseOut + "src/"));
-	gulp.src([webBase + "**/*", "!" + webBase + "public/**/*"])
-		.pipe(gulp.dest(baseOut + "src/"));
-	gulp.src("./src/web/html/error/**/*")
-		.pipe(gulp.dest(baseOut + "src/error/"));
+	const stream = merge();
 
-	return gulp.src(baseSrc + "/**/*").pipe(gulp.dest(baseOut));
+	stream.add(gulp.src(webBase + "public/**/*")
+		.pipe(gulp.dest(baseOut + "src/")));
+	stream.add(gulp.src([webBase + "**/*", "!" + webBase + "public/**/*"])
+		.pipe(gulp.dest(baseOut + "src/")));
+	stream.add(gulp.src("./src/web/html/error/**/*")
+		.pipe(gulp.dest(baseOut + "src/error/")));
+	stream.add(gulp.src(baseSrc + "/**/*")
+		.pipe(gulp.dest(baseOut)));
+
+	return stream;
 }
 
 exports.build = build;

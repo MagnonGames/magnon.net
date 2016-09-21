@@ -10,15 +10,12 @@ var baseSrc = "src/node/",
 if (gutil.env.dev) baseOut = "out/development/node/";
 
 gulp.task("node", ["html"], function() {
-	gulp.src([
-		baseSrc + "server.js",
-		baseSrc + "start_node.sh",
-		"package.json"
-	])
-		.pipe(gulp.dest(baseOut + "src/"));
-
-	return gulp.src(baseSrc + "Dockerfile")
-		.pipe(gulp.dest(baseOut));
+	return merge(
+		gulp.src([baseSrc + "server.js", baseSrc + "start_node.sh", "package.json"])
+			.pipe(gulp.dest(baseOut + "src/")),
+		gulp.src(baseSrc + "Dockerfile")
+			.pipe(gulp.dest(baseOut))
+	);
 });
 
 gulp.task("html", function() {

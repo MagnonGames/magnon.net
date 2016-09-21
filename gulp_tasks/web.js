@@ -123,9 +123,11 @@ function generateFavicon(src, scale, out, name) {
 }
 
 gulp.task("favicon", function() {
-	generateFavicon(baseSrc + "svg/favicon.svg", 1, baseOut + "public/", "favicon.png");
-	generateFavicon(baseSrc + "svg/favicon.svg", 1);
-	return generateFavicon(baseSrc + "svg/favicon.svg", 12);
+	const stream = merge();
+	stream.add(generateFavicon(baseSrc + "svg/favicon.svg", 1, baseOut + "public/", "favicon.png"));
+	stream.add(generateFavicon(baseSrc + "svg/favicon.svg", 1));
+	stream.add(generateFavicon(baseSrc + "svg/favicon.svg", 12));
+	return stream;
 });
 
 gulp.task("images", function() {
