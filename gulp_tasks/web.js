@@ -111,12 +111,16 @@ function createBundle(entries, bundleName, watch) {
 }
 
 function generateFavicon(src, scale, out, name) {
+	const size = scale * 16;
 	return gulp.src(src)
 		.pipe(gutil.env.dev ? gutil.noop() : imagemin({
 			multipass: true
 		}))
-		.pipe(svg2png(scale))
-		.pipe(rename(name || (16 * scale) + ".png"))
+		.pipe(svg2png({
+			width: size,
+			height: size
+		}))
+		.pipe(rename(name || size + ".png"))
 		.pipe(gulp.dest(out || baseOut + "images/ui/fav/"));
 }
 
