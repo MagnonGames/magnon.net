@@ -110,7 +110,6 @@
 		"no-var": 2,
 		"no-whitespace-before-property": 2,
 		"no-with": 2,
-		"object-property-newline": [2, { "allowMultiplePropertiesPerLine": true }],
 		"operator-linebreak": [2, "after", { "overrides": { "?": "before", ":": "before" } }],
 		"padded-blocks": [2, "never"],
 		"quotes": [2, "double", { "avoidEscape": true, "allowTemplateLiterals": true }],
