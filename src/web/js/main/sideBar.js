@@ -20,7 +20,7 @@ export default class SideBar {
 	setUpListeners() {
 		document.body.getElementsByClassName("topOverflow")[0]
 			.addEventListener("click", this.open.bind(this));
-		this.blackout.addEventListener("click", this.close.bind(this))
+		this.blackout.addEventListener("click", this.close.bind(this));
 
 		window.addEventListener("touchstart", this.touchStart.bind(this));
 		window.addEventListener("touchmove", this.touchMove.bind(this));
@@ -84,7 +84,6 @@ export default class SideBar {
 	touchEnd(e) {
 		if (this.swiping) {
 			if (this.startX !== e.changedTouches[0].clientX) {
-				let x = e.changedTouches[0].clientX - this.offset;
 				if (this.lastDirection >= 0) {
 					this.open();
 				} else {
@@ -99,7 +98,7 @@ export default class SideBar {
 		if (this.out && e.changedTouches[0].clientX > this.getEndPosition()) {
 			e.preventDefault();
 			e.stopPropagation();
-			if (this.startX == e.changedTouches[0].clientX) {
+			if (this.startX === e.changedTouches[0].clientX) {
 				this.close();
 			}
 		}
@@ -115,7 +114,9 @@ export default class SideBar {
 		this.blackout.style.transition = "opacity 0.2s";
 		this.blackout.style.display = "block";
 		this.navigation.style.left = "0px";
-		window.setTimeout(function () { blackout.style.opacity = 1; }, 10);
+		window.setTimeout(() => {
+			this.blackout.style.opacity = 1;
+		}, 10);
 		this.out = true;
 	}
 
@@ -124,7 +125,9 @@ export default class SideBar {
 		this.blackout.style.transition = "opacity 0.2s";
 		this.navigation.style.left = -this.navigation.offsetWidth + "px";
 		this.blackout.style.opacity = 0;
-		window.setTimeout(() => { this.blackout.style.display = "none"; }, 200);
+		window.setTimeout(() => {
+			this.blackout.style.display = "none";
+		}, 200);
 		this.out = false;
 	}
 }

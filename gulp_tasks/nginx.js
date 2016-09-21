@@ -1,8 +1,8 @@
-var gulp = require("gulp"),
+const gulp = require("gulp"),
 	gutil = require("gulp-util"),
 	merge = require("merge-stream");
 
-var baseSrc = "./src/nginx",
+let baseSrc = "./src/nginx",
 	baseOut = "./out/production/nginx/";
 
 if (gutil.env.dev) baseOut = "out/development/nginx/";
@@ -12,7 +12,7 @@ gulp.task("nginx", ["public"], function() {
 });
 
 function build() {
-	var webBase = "./out/" + (gutil.env.dev ? "development" : "production") + "/web/"
+	const webBase = "./out/" + (gutil.env.dev ? "development" : "production") + "/web/";
 
 	const stream = merge();
 

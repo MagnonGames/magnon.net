@@ -1,26 +1,26 @@
-var express = require("express"),
-	nunjucks = require("nunjucks");
+const express = require("express"),
+	nunjucks = require("nunjucks"),
 
 	app = express(),
 	router = express.Router();
 
-function startServer() {
-	"use strict";
+let server;
 
-	app.disable('etag');
+function startServer() {
+	app.disable("etag");
 	app.set("view engine", "html");
 
 	nunjucks.configure(["views"], {
-	    autoescape: true,
-	    express: app,
+		autoescape: true,
+		express: app,
 		noCache: true
 	});
 
-	router.get("/", function (req, res) {
-	  	res.render("index");
+	router.get("/", function(req, res) {
+		res.render("index");
 	});
 	router.get("/:page", function(req, res) {
-		res.render(req.params.page, {}, function (err, html) {
+		res.render(req.params.page, {}, function(err, html) {
 			if (err) {
 				res.status(404).send("Not found");
 			} else {
@@ -29,7 +29,7 @@ function startServer() {
 		});
 	});
 	router.get("/games/:game", function(req, res) {
-		res.render("games/" + req.params.game, {}, function (err, html) {
+		res.render("games/" + req.params.game, {}, function(err, html) {
 			if (err) {
 				res.status(404).send("Not found");
 			} else {
@@ -49,13 +49,17 @@ function startServer() {
 
 	app.use(router);
 
-	app.listen(8001);
+	server = app.listen(8001);
 }
 
-process.on('SIGTERM', function () {
-	server.close(function () {
+process.on("SIGTERM", function() {
+	if (server) {
+		server.close(function() {
+			process.exit(0);
+		});
+	} else {
 		process.exit(0);
-	});
+	}
 });
 
 startServer();

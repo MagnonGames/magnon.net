@@ -15,9 +15,9 @@ export default class TwitchChecker {
 		let xhr = new XMLHttpRequest();
 
 		xhr.onload = () => {
-			let resp = JSON.parse(xhr.responseText)
+			let resp = JSON.parse(xhr.responseText);
 			callback(resp.stream != null);
-		}
+		};
 
 		xhr.open("GET", "https://api.twitch.tv/kraken/streams/themagnon", true);
 		xhr.setRequestHeader("Client-ID", "4q9kg6kuvdragw2stqq4lkrqvullu59");

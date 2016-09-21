@@ -15,7 +15,7 @@ class Main {
 		this.sideBar = new SideBar();
 		this.twitchChecker = new TwitchChecker();
 
-		if (Cookies.get("cwa") != "true") {
+		if (Cookies.get("cwa") !== "true") {
 			this.notifications.showNotification("Cookies",
 				"We use cookies to provide you with a better experience. " +
 				"By staying on this website, you agree with our " +
@@ -44,5 +44,5 @@ function init() {
 	window.main = new Main();
 }
 
-if (document.readyState != "loading") init();
+if (document.readyState !== "loading") init();
 else document.addEventListener("DOMContentLoaded", init);

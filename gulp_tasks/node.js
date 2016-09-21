@@ -1,10 +1,10 @@
-var gulp = require("gulp"),
+const gulp = require("gulp"),
 	minifyHtml = require("gulp-htmlmin"),
 	gutil = require("gulp-util"),
 	imagemin = require("gulp-imagemin"),
 	merge = require("merge-stream");
 
-var baseSrc = "src/node/",
+let baseSrc = "src/node/",
 	baseOut = "out/production/node/";
 
 if (gutil.env.dev) baseOut = "out/development/node/";
@@ -19,7 +19,7 @@ gulp.task("node", ["html"], function() {
 });
 
 gulp.task("html", function() {
-	var stream = merge(
+	const stream = merge(
 		gulp.src(["./src/web/svg/**/*.svg"], { base: "./src/web/" })
 			.pipe(gutil.env.dev ? gutil.noop() : imagemin([
 				imagemin.svgo({ plugins: [{ mergePaths: false }] })
@@ -29,7 +29,7 @@ gulp.task("html", function() {
 				// This is basically just making sure it isn't trying to
 				// minify any nunjucks code since gulp-htmlmin doesn't
 				// support doing that.
-				ignoreCustomFragments: [(/\{\%[^\%]*?\%\}(\s)?/g),
+				ignoreCustomFragments: [(/\{%[^%]*?%\}(\s)?/g),
 				(/\{\{[^\{]*?\}\}(\s)?/g), (/<%[\s\S]*?%>/), (/<\?[\s\S]*?\?>/)]
 			}))
 	);

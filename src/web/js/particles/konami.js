@@ -7,7 +7,7 @@ export default class Konami {
 			this.keys.push(e.keyCode);
 
 			if (this.check()) {
-				if (this.keys.length == this.konamiCode.length) {
+				if (this.keys.length === this.konamiCode.length) {
 					this.keys = [];
 					callbackOnEntered();
 				}
@@ -19,7 +19,7 @@ export default class Konami {
 
 	check() {
 		for (let i = 0; i < this.keys.length; i++) {
-			if (this.keys[i] != this.konamiCode[i]) {
+			if (this.keys[i] !== this.konamiCode[i]) {
 				return false;
 			}
 		}

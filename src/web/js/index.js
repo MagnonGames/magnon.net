@@ -61,7 +61,7 @@ function init() {
 		effects: [
 			new effects.FadeInAndOut(links)
 		]
-	})
+	});
 
 	let splash = splashFromArray(timers);
 	splash.run();
@@ -75,5 +75,5 @@ function init() {
 	backgroundParticles.run();
 }
 
-if (document.readyState != "loading") init();
+if (document.readyState !== "loading") init();
 else document.addEventListener("DOMContentLoaded", init);

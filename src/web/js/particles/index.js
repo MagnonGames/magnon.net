@@ -1,5 +1,5 @@
 import * as PIXI from "pixi.js";
-import * as Particles from "pixi-particles";
+import "pixi-particles";
 
 import ParticleGenerator from "./particleGenerator.js";
 import Konami from "./konami.js";
@@ -43,7 +43,7 @@ export default class BackgroundParticles {
 			this.splash(e.clientX, e.clientY);
 		});
 
-		let konami = new Konami(() => {
+		this.konami = new Konami(() => {
 			if (!this.easterEggActivated) {
 				this.easterEggActivated = true;
 

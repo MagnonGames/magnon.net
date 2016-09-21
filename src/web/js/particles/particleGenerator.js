@@ -1,5 +1,5 @@
 import * as PIXI from "pixi.js";
-import * as Particles from "pixi-particles";
+import "pixi-particles";
 
 export default class ParticleGenerator {
 	getNewBackgroundEmitter(container, width, height) {
@@ -10,33 +10,33 @@ export default class ParticleGenerator {
 					start: 0.03,
 					end: 0.01
 				},
-		        color: {
-		            start: "#ffffff",
-		            end: "#ffffff"
-		        },
-		        speed: {
-		            start: 200,
-		            end: 100
-		        },
-		        startRotation: {
-		            min: 260,
-		            max: 280
-		        },
+				color: {
+					start: "#ffffff",
+					end: "#ffffff"
+				},
+				speed: {
+					start: 200,
+					end: 100
+				},
+				startRotation: {
+					min: 260,
+					max: 280
+				},
 				lifetime: {
 					min: 10,
 					max: 15
 				},
-		        frequency: 0.12,
-		        maxParticles: 500,
-		        addAtBack: false,
-		        spawnType: "rect",
+				frequency: 0.12,
+				maxParticles: 500,
+				addAtBack: false,
+				spawnType: "rect",
 				spawnRect: {
 					x: 0, y: height, w: width, h: 10
 				},
 				pos: {
 					x: 0, y: 0
 				}
-		    }
+			}
 		);
 	}
 

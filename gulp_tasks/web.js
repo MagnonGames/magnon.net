@@ -1,5 +1,4 @@
-var gulp = require("gulp"),
-	concat = require("gulp-concat"),
+const gulp = require("gulp"),
 	uglify = require("gulp-uglify"),
 	sass = require("gulp-sass"),
 	prefixer = require("gulp-autoprefixer"),
@@ -14,14 +13,13 @@ var gulp = require("gulp"),
 
 	browserify = require("browserify"),
 	watchify = require("watchify"),
-	babelify = require("babelify"),
 	source = require("vinyl-source-stream"),
 	buffer = require("vinyl-buffer"),
 	sourcemaps = require("gulp-sourcemaps"),
 
 	nginx = require("./nginx.js");
 
-var baseSrc = "src/web/",
+let baseSrc = "src/web/",
 	baseOut = "out/production/web/";
 
 if (gutil.env.dev) baseOut = "out/development/web/";
@@ -31,7 +29,7 @@ const manifestConf = {
 };
 
 gulp.task("css", function() {
-	var srcPath = baseSrc + "scss/",
+	const srcPath = baseSrc + "scss/",
 		browsers = [
 			"> 1%",
 			"Opera > 35"
@@ -56,7 +54,7 @@ gulp.task("js", ["lint"], function() {
 });
 
 function buildJS(watch) {
-	var srcPath = baseSrc + "js/";
+	const srcPath = baseSrc + "js/";
 
 	return merge(
 		createBundle(
@@ -73,19 +71,19 @@ function buildJS(watch) {
 exports.buildJS = buildJS;
 
 function createBundle(entries, bundleName, watch) {
-	var browserifyInstance = browserify({
-			entries: entries,
-			debug: gutil.env.dev,
-			cache: {},
-		    packageCache: {},
-		    fullPaths: watch
-		}).transform("babelify", {
-			presets: ["es2015"]
-		});
+	const browserifyInstance = browserify({
+		entries: entries,
+		debug: gutil.env.dev,
+		cache: {},
+		packageCache: {},
+		fullPaths: watch
+	}).transform("babelify", {
+		presets: ["es2015"]
+	});
 
-	var b = watch ? watchify(browserifyInstance) : browserifyInstance;
+	const b = watch ? watchify(browserifyInstance) : browserifyInstance;
 
- 	var build = function() {
+	const build = function() {
 		return b.bundle()
 			.pipe(source(bundleName))
 			.pipe(buffer())
@@ -96,7 +94,7 @@ function createBundle(entries, bundleName, watch) {
 			.pipe(gulp.dest(baseOut + "js/"))
 			.pipe(rev.manifest(manifestConf))
 			.pipe(gulp.dest(baseOut));
-	}
+	};
 
 	if (watch) {
 		b.on("update", function() {
@@ -118,8 +116,8 @@ function generateFavicon(src, scale, out, name) {
 			multipass: true
 		}))
 		.pipe(svg2png(scale))
-		.pipe(rename(name ? name : (16 * scale) + ".png"))
-		.pipe(gulp.dest(out ? out : baseOut + "images/ui/fav/"));
+		.pipe(rename(name || (16 * scale) + ".png"))
+		.pipe(gulp.dest(out || baseOut + "images/ui/fav/"));
 }
 
 gulp.task("favicon", function() {
@@ -131,7 +129,7 @@ gulp.task("favicon", function() {
 });
 
 gulp.task("images", function() {
-	var srcPath = baseSrc + "images/";
+	const srcPath = baseSrc + "images/";
 
 	return gulp.src(srcPath + "**/*")
 		.pipe(gutil.env.dev ? gutil.noop() : imagemin())

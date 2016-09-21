@@ -50,7 +50,7 @@ export default class Notifications {
 					notification.parentElement.removeChild(notification);
 				}, time);
 			}, time);
-			if (typeof onclose == 'function') {
+			if (typeof onclose === "function") {
 				onclose();
 			}
 		});
