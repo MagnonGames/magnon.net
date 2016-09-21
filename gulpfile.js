@@ -1,6 +1,7 @@
 var gulp = require("gulp"),
 	gutil = require("gulp-util"),
-	requireDir = require("require-dir");
+	requireDir = require("require-dir"),
+	eslint = require("gulp-eslint");
 
 var tasks = requireDir('./gulp_tasks', { recurse: true });
 
@@ -12,6 +13,13 @@ gulp.task("watch", ["default"], function() {
 	gulp.watch("src/web/public/**/*", ["public", "nginx"]);
 	gulp.watch("src/nginx/**/*", ["nginx"]);
 	gulp.watch("src/node/**/*", ["node"]);
+});
+
+gulp.task("lint", () => {
+	return gulp.src(["**/*.js", "!node_modules/**"])
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failOnError());
 });
 
 gulp.task("default", ["web", "node", "nginx"]);

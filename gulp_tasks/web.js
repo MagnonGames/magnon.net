@@ -51,7 +51,7 @@ gulp.task("css", function() {
 		.pipe(gulp.dest(baseOut));
 });
 
-gulp.task("js", function() {
+gulp.task("js", ["lint"], function() {
 	return buildJS(false);
 });
 
