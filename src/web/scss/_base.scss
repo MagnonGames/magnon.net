@@ -52,7 +52,7 @@ a {
 	height: $headerHeight;
 	background-color: $headerColor;
 	box-shadow: 0 0 20px transparentize($foregroundColor, 0.5);
-	z-index: 5;
+	z-index: 50;
 	transition: height 0.2s;
 
 	@include large {
@@ -105,7 +105,7 @@ nav {
 	width: 90%;
 	max-width: 300px;
 	background: $backgroundColor;
-	z-index: 10;
+	z-index: 101;
 	font-family: $font;
 	user-select: none;
 
@@ -147,7 +147,7 @@ nav {
 	width: 100%;
 	height: 100%;
 	background-color: transparentize($foregroundColor, 0.2);
-	z-index: 5;
+	z-index: 100;
 	display: none;
 	opacity: 0;
 }
@@ -159,6 +159,7 @@ nav {
 	max-width: 100%;
 	padding-left: $defaultPadding * 2;
 	box-sizing: border-box;
+	z-index: 80;
 
 	.notification {
 		transition: all 0.3s;
