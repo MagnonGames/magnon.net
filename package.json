@@ -9,7 +9,7 @@
     "gulp-autoprefixer": "^3.1.0",
     "gulp-cssnano": "^2.1.1",
     "gulp-eslint": "^3.0.1",
-    "gulp-htmlmin": "^2.0.0",
+    "gulp-htmlmin": "^3.0.0",
     "gulp-imagemin": "^3.0.1",
     "gulp-rename": "^1.2.2",
     "gulp-rev": "^7.1.2",
@@ -28,8 +28,8 @@
   "dependencies": {
     "cookies-js": "^1.2.2",
     "express": "^4.13.4",
-    "nunjucks": "^2.3.0",
-    "pixi-particles": "^1.6.6",
+    "nunjucks": "^3.0.0",
+    "pixi-particles": "^2.0.0",
     "pixi.js": "^4.0.1",
     "splasher.js": "^0.5.0"
   }
