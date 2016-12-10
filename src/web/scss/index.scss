@@ -19,8 +19,8 @@ body {
 }
 
 #mainContent {
-	background-color: $highlightColor;
 	min-height: 100vh;
+	font-size: 0;
 }
 
 #footer {
@@ -33,11 +33,20 @@ body {
 	left: 0;
 }
 
+#splashContainer {
+	background-color: $highlightColor;
+	position: relative;
+	box-shadow: 0 5px 40px 0 rgba(0, 0, 0, 0.4);
+	z-index: 1;
+	overflow: hidden;
+}
+
 #splash {
 	display: none;
 	width: 100vw;
 	height: 100vh;
 	position: relative;
+	transition: height 1s;
 
 	* {
 		display: inline-block;
@@ -90,6 +99,51 @@ body {
 
 		a:hover {
 			text-decoration: underline;
+		}
+	}
+}
+
+.promotion {
+	overflow: hidden;
+	width: 100vw;
+	min-height: 75vh;
+	position: relative;
+
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+
+	&.no1 {
+		background-image: url("../images/games/pillowKnights.png");
+		image-rendering: pixelated;
+		color: white;
+
+		.text {
+			box-sizing: border-box;
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			padding: 10px;
+
+			background: rgba(0, 0, 0, 0.5);
+
+			@include large {
+				text-align: right;
+				padding: 30px 50px;
+			}
+
+			h2 {
+				font-size: 40px;
+			}
+
+			p {
+				font-size: 20px;
+			}
+
+			a {
+				color: white;
+				cursor: pointer;
+			}
 		}
 	}
 }

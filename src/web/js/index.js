@@ -64,6 +64,11 @@ function init() {
 	});
 
 	let splash = splashFromArray(timers);
+	splash.onEnd = () => {
+		setTimeout(() => {
+			splashElement.style.height = "92vh";
+		}, 300);
+	};
 	splash.run();
 
 	splashElement.style.display = "block";

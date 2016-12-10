@@ -14,22 +14,33 @@
 {% endblock %}
 
 {% block content %}
-	<div id="backgroundParticlesContainer"></div>
-	<div id="splash">
-		<span class="center hello">
-			Hello there!
-		</span>
-		<span class="center welcome">
-			Welcome to...
-		</span>
-		<span class="center logo">
-			{% include "./svg/topLogo.svg" %}
-		</span>
+	<div id="splashContainer">
+		<div id="backgroundParticlesContainer"></div>
+		<div id="splash">
+			<span class="center hello">
+				Hello there!
+			</span>
+			<span class="center welcome">
+				Welcome to...
+			</span>
+			<span class="center logo">
+				{% include "./svg/topLogo.svg" %}
+			</span>
 
-		<div class="center links">
-			<a href="/games" class="link">Games</a>
-			|
-			<a href="/about" class="link">About</a>
+			<div class="center links">
+				<a href="/games" class="link">Games</a>
+				|
+				<a href="/about" class="link">About</a>
+			</div>
+		</div>
+	</div>
+	<div class="promotion no1">
+		<div class="text">
+			<h2>Pillow Knights</h2>
+			<p>
+				Our latest game, Pillow Knights, is here!
+				<a href="https://pillowknights.magnon.net">Play it now!</a>
+			</p>
 		</div>
 	</div>
 {% endblock %}
