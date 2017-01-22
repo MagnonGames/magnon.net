@@ -29,8 +29,8 @@ gulp.task("html", function() {
 				// This is basically just making sure it isn't trying to
 				// minify any nunjucks code since gulp-htmlmin doesn't
 				// support doing that.
-				ignoreCustomFragments: [(/\{%[^%]*?%\}(\s)?/g),
-				(/\{\{[^\{]*?\}\}(\s)?/g), (/<%[\s\S]*?%>/), (/<\?[\s\S]*?\?>/)]
+				ignoreCustomFragments: [(/{%[^%]*?%}(\s)?/g),
+				(/{{[^{]*?}}(\s)?/g), (/<%[\s\S]*?%>/), (/<\?[\s\S]*?\?>/)]
 			}))
 	);
 	return stream.pipe(gulp.dest(baseOut + "src/views/"));
