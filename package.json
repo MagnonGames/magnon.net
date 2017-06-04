@@ -19,7 +19,7 @@
   },
   "homepage": "https://magnon.net",
   "dependencies": {
-    "@magnon/components": "^0.1.0",
+    "@magnon/components": "^0.2.0",
     "webcomponents.js": "git+https://github.com/webcomponents/webcomponentsjs.git"
   },
   "devDependencies": {
