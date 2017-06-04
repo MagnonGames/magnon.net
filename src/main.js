@@ -1,12 +1,17 @@
 import "@webcomponents/webcomponentsjs/webcomponents-sd-ce.js";
 
 import "@magnon/components/magnon-shell/magnon-shell.html";
+import "@magnon/components/magnon-notifications/magnon-notifications.html";
+import "@magnon/components/magnon-icon/magnon-icon.html";
 import "@magnon/components/magnon-spinner/magnon-spinner.html";
 import "@magnon/components/magnon-card/magnon-card.html";
 
 import Loader from "./js/loader/loader.js";
 import { buildShell } from "./js/shell/shell.js";
 
+import cookieNotification from "./notifications/cookies.html";
+
+/* globals MagnonNotifications */
 class MagnonWebsite {
     init() {
         this.setUpShell();
@@ -17,6 +22,10 @@ class MagnonWebsite {
             this.updatePage();
         };
         window.addEventListener("popstate", historyStateListener);
+
+        window.addEventListener("load", () => {
+            MagnonNotifications.send(cookieNotification);
+        });
     }
 
     setUpShell() {
