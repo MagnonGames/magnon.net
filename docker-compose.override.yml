@@ -1,0 +1,11 @@
+version: "3"
+services:
+    magnon-net-static:
+        ports:
+          - "8080:80"
+        environment:
+            VIRTUAL_HOST: localhost
+        volumes:
+          - ./out:/var/www/magnon.net:ro
+          - ./nginx/magnon.net:/etc/nginx/magnon.net:ro
+        restart: "no"

@@ -1,0 +1,11 @@
+version: "3"
+services:
+    magnon-net-static:
+        build: .
+        expose:
+          - "80"
+        environment:
+          - VIRTUAL_HOST=magnon.net,www.magnon.net,*.magnon.net
+          - LETSENCRYPT_HOST=magnon.net,www.magnon.net
+          - LETSENCRYPT_EMAIL
+        restart: on-failure
