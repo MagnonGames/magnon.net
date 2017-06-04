@@ -80,7 +80,6 @@ class MagnonWebsite {
 
         anchors.map(a => {
             if (a.href.startsWith(`${location.protocol}//${location.host}/`)) {
-                console.log(a);
                 a.addEventListener("click", e => {
                     e.preventDefault();
 
