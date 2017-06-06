@@ -24,7 +24,12 @@ class MagnonWebsite {
         window.addEventListener("popstate", historyStateListener);
 
         window.addEventListener("load", () => {
-            MagnonNotifications.send(cookieNotification);
+            if (!localStorage.getItem("goodWidthCookies")) {
+                const notification = MagnonNotifications.send(cookieNotification);
+                notification.addEventListener("close", () => {
+                    localStorage.setItem("goodWidthCookies", true);
+                });
+            }
         });
     }
 
