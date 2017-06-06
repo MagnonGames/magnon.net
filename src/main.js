@@ -72,6 +72,7 @@ class MagnonWebsite {
 
     loadPage(page) {
         import(`./pages/${page}/meta.json`).then(meta => {
+            this.shell.expandContent = meta.expandContent;
             import(`./pages/${page}/${page}.html`).then(html => {
                 this.content.innerHTML = html;
                 this._delegateLinks(href => this.goToPage(href));
@@ -83,6 +84,7 @@ class MagnonWebsite {
     }
 
     show404() {
+        this.shell.expandContent = false;
         import("./error/404.html").then(html => {
             this.content.innerHTML = html;
             Loader.hide();
