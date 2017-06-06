@@ -76,7 +76,13 @@ class MagnonWebsite {
             import(`./pages/${page}/${page}.html`).then(html => {
                 this.content.innerHTML = html;
                 this._delegateLinks(href => this.goToPage(href));
-                Loader.hide();
+                if (meta.js) {
+                    import(`./pages/${page}/${page}.js`).then(() => {
+                        Loader.hide();
+                    });
+                } else {
+                    Loader.hide();
+                }
             });
         }).catch(() => {
             this.show404();
