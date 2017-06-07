@@ -18,6 +18,7 @@ class MagnonWebsite {
         this.updatePage();
 
         const historyStateListener = () => {
+            if (this.currentPage === (this.page === "" ? "home" : this.page)) return;
             Loader.show();
             this.updatePage();
         };
@@ -31,6 +32,10 @@ class MagnonWebsite {
                 });
             }
         });
+    }
+
+    get page() {
+        return location.pathname.match(/\/(.*)/)[1];
     }
 
     setUpShell() {
@@ -58,7 +63,7 @@ class MagnonWebsite {
     }
 
     updatePage() {
-        let page = location.pathname.match(/\/(.*)/)[1];
+        let page = this.page;
         if (page === "") page = "home";
         else if (page === "home") {
             this.show404();
