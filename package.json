@@ -3,8 +3,12 @@
   "version": "2.0.0",
   "description": "The magnon.net website",
   "scripts": {
-    "build": "webpack && docker-compose build",
-    "watch": "WEBPACK_WATCH=true webpack",
+    "build": "npm run build:js && npm run build:docker",
+    "build:js": "webpack",
+    "build:docker": "docker-compose build",
+    "watch": "npm run watch:js | (sleep 3s && npm run watch:docker)",
+    "watch:js": "WEBPACK_WATCH=true npm run build:js",
+    "watch:docker": "docker-compose up",
     "lint": "eslint",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
