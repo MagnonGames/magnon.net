@@ -24,6 +24,7 @@
   "homepage": "https://magnon.net",
   "dependencies": {
     "@magnon/components": "^0.2.0",
+    "animejs": "^2.0.2",
     "webcomponents.js": "git+https://github.com/webcomponents/webcomponentsjs.git"
   },
   "devDependencies": {
@@ -32,7 +33,9 @@
     "clean-webpack-plugin": "^0.1.16",
     "ejs": "^2.5.6",
     "eslint": "^3.19.0",
+    "file-loader": "^0.11.2",
     "html-loader": "^0.4.5",
+    "image-webpack-loader": "^3.3.1",
     "wc-loader": "^1.1.4",
     "webpack": "^2.6.1"
   }

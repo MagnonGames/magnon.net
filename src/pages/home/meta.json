@@ -1,4 +1,5 @@
 {
     "title": "Home",
+    "js": true,
     "expandContent": true
 }

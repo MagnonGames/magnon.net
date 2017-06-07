@@ -16,7 +16,11 @@ module.exports = {
     module: {
         loaders: [
             { test: /magnon.components\/.+?\.html$/, loader: "wc-loader" },
-            { test: /src\/.*?\.html$/, loader: "html-loader" }
+            { test: /src\/.*?\.html$/, loader: "html-loader" },
+            {
+                test: /\.(jpe?g|png|gif|svg)$/,
+                loaders: ["file-loader", "image-webpack-loader"]
+            }
         ]
     },
     plugins: [

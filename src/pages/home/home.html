@@ -1,1 +1,199 @@
-<a href="about">About</a>
+<style>
+    #home-content {
+        background: var(--magnon-black);
+        color: white;
+    }
+
+    #intro {
+        position: relative;
+        display: flex;
+        min-height: calc(100vh - 125px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: var(--magnon-black-blue);
+    }
+
+    #intro magnon-logo {
+        height: 15vh;
+    }
+
+    #intro h1 {
+        position: absolute;
+        top: -100vw;
+    }
+
+    #intro-text {
+        margin-top: 50px;
+        font-size: 20px;
+    }
+
+    #intro-text > * {
+        display: inline-block;
+        margin: 2px;
+    }
+
+    #intro-hint {
+        position: absolute;
+        bottom: 15px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        --magnon-icon-color: white;
+        --magnon-icon-size: 48px;
+        opacity: 0;
+    }
+
+    #intro-hint > * {
+        margin: 20px;
+    }
+
+    #games {
+        min-height: 80vh;
+        background: var(--magnon-black-blue);
+        overflow: hidden;
+    }
+
+    .game-container {
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        background-color: var(--magnon-black);
+        image-rendering: pixelated;
+        height: 80vh;
+        transform: scale(0);
+    }
+
+    .game-container > magnon-card {
+        position: absolute;
+        bottom: 50px;
+        left: 50px;
+        width: 40vw;
+    }
+
+    #about {
+        min-height: 100vh;
+        position: relative;
+    }
+
+    #about > div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    #team {
+        position: relative;
+        max-width: 50vw;
+        margin: 200px 0 100px 0;
+        opacity: 0;
+    }
+
+    #members {
+        flex-grow: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 1500px;
+    }
+
+    #members magnon-image {
+        --magnon-image-border-radius: 50%;
+        width: 25%;
+        margin: 0 20px 180px 20px;
+        opacity: 0;
+    }
+
+    .user-social {
+        margin-top: 30px;
+        --magnon-social-icon-button-color: white;
+    }
+</style>
+
+<div id="home-content">
+    <div id="intro">
+        <magnon-logo animate></magnon-logo>
+        <h1>Magnon</h1>
+        <div id="intro-text">
+            Trying to push games forward, little at a time
+        </div>
+        <div id="intro-hint">
+            More down here!
+            <magnon-icon icon="down"></magnon-icon>
+        </div>
+    </div>
+
+    <div id="games">
+        <div class="game-container">
+            <magnon-card>
+                <h2 slot="title">Pillow Knights</h2>
+                <span>
+                    Jump around, fight the kittens. Can you be the one who finally finds
+                    and defeats the core of the evil?
+                </span>
+                <div slot="footer">
+                    <a href="https://pillowKnights.magnon.net">
+                        <magnon-button>Try it NOW!</magnon-button>
+                    </a>
+                </div>
+            </magnon-card>
+        </div>
+    </div>
+
+    <magnon-star-container id="about">
+        <div>
+            <magnon-card id="team">
+                <h2 slot="title">The Team</h2>
+                <span>
+                    Hi! We're Magnon. We like to make 2d games to tickle your nostalgia
+                    and being lazy. Nothing beats a day of doing not anything at all,
+                    right!? Uhm, wait, never mind that. Anyway, we're a pretty small
+                    team and we love keeping contact with all you people so see you
+                    around!
+                    <br><br>
+                    (HINT: Click our faces to read more about us and find social media
+                    to stalk us!)
+                </span>
+            </magnon-card>
+            <div id="members">
+                <magnon-image show-alt alt="Ellie - magnonellie" src="//www.gravatar.com/avatar/ac38bc4935995cccfbf2c6b85dedeee1?s=500">
+                    <h3 slot="description-title">Hi there, Ellie here!</h3>
+                    I like doing fun stuff. That's why I work on Magnon stuff most
+                    of the time! I also like learning Japanese and occasionally even
+                    playing games. I don't really play games that often becasue I,
+                    uhm... You know... I make them more than I play them. I also
+                    really enjoy web development. Anyway, see you around!
+                    <div class="user-social">
+                        <magnon-twitter-button user="magnonellie"></magnon-twitter-button>
+                        <magnon-github-button user="magnonellie"></magnon-github-button>
+                        <magnon-bitbucket-button user="magnonellie"></magnon-bitbucket-button>
+                    </div>
+                </magnon-image>
+                <magnon-image show-alt alt="Karl - CurrayNRice" src="//www.gravatar.com/avatar/d1b5f7ed689d1e29178dafb6221ca935?s=500">
+                    <h3 slot="description-title">Hey, my name is Karl.</h3>
+                    What I do when it comes to Magnon is programming, but what I
+                    really love is designing and creating a game that is actually
+                    fun to play. I am a PC gamer, mostly because my finger
+                    coordination is just horrible. One important thing to note
+                    is that I am horrible at spelling.
+                    <div class="user-social">
+                        <magnon-twitter-button user="CurrayNRice"></magnon-twitter-button>
+                        <magnon-github-button user="CurrayNRice"></magnon-github-button>
+                    </div>
+                </magnon-image>
+                <magnon-image show-alt alt="Max - maxad" src="//www.gravatar.com/avatar/fffe89cd92e3d0d0ad8e4126aad37008?s=500">
+                    <h3 slot="description-title">Greetings! I’m Max.</h3>
+                    I like graphics, sculpting and animation. Therefore, I’m the
+                    one responsible for that part. When not doing graphics
+                    related stuff I like to play games or just sleep. I’m not a
+                    big fan of social media so Steam is the place.
+                    <div class="user-social">
+                        '/\'
+                    </div>
+                </magnon-image>
+            </div>
+        </div>
+    </magnon-star-container>
+</div>

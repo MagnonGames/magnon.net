@@ -5,6 +5,7 @@ import "@magnon/components/magnon-notifications/magnon-notifications.html";
 import "@magnon/components/magnon-icon/magnon-icon.html";
 import "@magnon/components/magnon-spinner/magnon-spinner.html";
 import "@magnon/components/magnon-card/magnon-card.html";
+import "@magnon/components/magnon-image/magnon-image.html";
 
 import Loader from "./js/loader/loader.js";
 import { buildShell } from "./js/shell/shell.js";
