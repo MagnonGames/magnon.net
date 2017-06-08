@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 
@@ -25,6 +26,7 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(["out"]),
+        new webpack.SourceMapDevToolPlugin(),
         new HtmlCompiler({
             outPath: "../html",
             template: "src/template.html",
