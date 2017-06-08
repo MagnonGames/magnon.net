@@ -11,7 +11,7 @@ scrollAt(1500, () => {
         duration: 1000
     });
 
-    const faceAnimation = anime({
+    anime({
         targets: "#members > magnon-image",
         translateY: [250, 0],
         scale: [0.5, 1],
@@ -24,19 +24,4 @@ scrollAt(1500, () => {
         easing: "easeOutElastic",
         delay: (n, i) => 1250 + i * 400
     });
-
-    faceAnimation.complete = () => {
-        [...document.querySelectorAll("#members > magnon-image")].forEach((face, i) => {
-            setTimeout(() => {
-                anime({
-                    targets: face,
-                    translateY: 10,
-                    duration: 2000,
-                    easing: "easeInOutQuad",
-                    loop: true,
-                    direction: "alternate"
-                });
-            }, i * 2000 / 3);
-        });
-    };
 });
