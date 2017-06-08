@@ -41,7 +41,10 @@ class HtmlCompiler {
                 }
             }
 
-            if (!metaChanged) return;
+            if (!metaChanged) {
+                callback();
+                return;
+            }
 
             const mainOut = compilation.mainTemplate.outputOptions;
             const jsPath = `/${mainOut.publicPath}${mainOut.filename}`;
