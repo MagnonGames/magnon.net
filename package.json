@@ -25,10 +25,9 @@
   "dependencies": {
     "@magnon/components": "^0.2.0",
     "animejs": "^2.0.2",
-    "webcomponents.js": "git+https://github.com/webcomponents/webcomponentsjs.git"
+    "@webcomponents/webcomponentsjs": "^1.0.1"
   },
   "devDependencies": {
-    "@webcomponents/webcomponentsjs": "^1.0.1",
     "babel-eslint": "^7.2.3",
     "clean-webpack-plugin": "^0.1.16",
     "ejs": "^2.5.6",
