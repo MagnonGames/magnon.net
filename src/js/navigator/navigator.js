@@ -85,7 +85,8 @@ class Navigator {
         return fetchPage(pageName).then(page => {
             show(page);
             return Promise.resolve();
-        }).catch(() => {
+        }).catch(e => {
+            console.error(e);
             return fetchErrorPage("404").then(page => {
                 show(page);
                 return Promise.resolve();
