@@ -7,7 +7,7 @@ import "@magnon/components/magnon-spinner/magnon-spinner.html";
 import "@magnon/components/magnon-card/magnon-card.html";
 import "@magnon/components/magnon-image/magnon-image.html";
 
-import Loader from "./js/loader/loader.js";
+import Navigator from "./js/navigator/navigator.js";
 import { buildShell } from "./js/shell/shell.js";
 
 import cookieNotification from "./notifications/cookies.html";
@@ -16,14 +16,7 @@ import cookieNotification from "./notifications/cookies.html";
 class MagnonWebsite {
     init() {
         this.setUpShell();
-        this.updatePage();
-
-        const historyStateListener = () => {
-            if (this.currentPage === (this.page === "" ? "home" : this.page)) return;
-            Loader.show();
-            this.updatePage();
-        };
-        window.addEventListener("popstate", historyStateListener);
+        Navigator.updatePage();
 
         window.addEventListener("load", () => {
             if (!localStorage.getItem("goodWidthCookies")) {
@@ -35,86 +28,12 @@ class MagnonWebsite {
         });
     }
 
-    get page() {
-        return location.pathname.match(/\/(.*)/)[1];
-    }
-
     setUpShell() {
         this.shell = buildShell();
-        this.content = document.createElement("div");
-        this.content.slot = "content";
 
-        this.shell.appendChild(this.content);
         document.body.appendChild(this.shell);
-    }
 
-    goToPage(page, replace) {
-        if ((page === "" ? "home" : page) === this.currentPage) return;
-        if (page === "") page = "/";
-
-        Loader.show();
-
-        if (replace) {
-            history.replaceState(null, null, page);
-        } else {
-            history.pushState(null, null, page);
-        }
-
-        this.updatePage();
-    }
-
-    updatePage() {
-        let page = this.page;
-        if (page === "") page = "home";
-        else if (page === "home") {
-            this.show404();
-            return;
-        }
-
-        this.currentPage = page;
-
-        this.loadPage(page);
-    }
-
-    loadPage(page) {
-        import(`./pages/${page}/meta.json`).then(meta => {
-            this.shell.expandContent = meta.expandContent;
-            import(`./pages/${page}/${page}.html`).then(html => {
-                this.content.innerHTML = html;
-                this._delegateLinks(href => this.goToPage(href));
-                if (meta.js) {
-                    import(`./pages/${page}/${page}.js`).then(() => {
-                        Loader.hide();
-                    });
-                } else {
-                    Loader.hide();
-                }
-            });
-        }).catch(() => {
-            this.show404();
-        });
-    }
-
-    show404() {
-        this.shell.expandContent = false;
-        import("./error/404.html").then(html => {
-            this.content.innerHTML = html;
-            Loader.hide();
-        });
-    }
-
-    _delegateLinks(callback) {
-        const anchors = [...document.querySelectorAll("a[href]")];
-
-        anchors.map(a => {
-            if (a.href.startsWith(`${location.protocol}//${location.host}/`)) {
-                a.addEventListener("click", e => {
-                    e.preventDefault();
-
-                    callback(a.href.match(/.+?:\/\/.+?\/(.*)/)[1]);
-                });
-            }
-        });
+        Navigator.shell = this.shell;
     }
 }
 
