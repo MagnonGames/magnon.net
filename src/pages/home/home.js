@@ -15,7 +15,6 @@ export default () => {
 };
 
 export const state = state => {
-    console.log(state);
     if (state.scroll) {
         scrollTo(state.scroll);
     }
