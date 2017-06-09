@@ -21,7 +21,8 @@ module.exports = {
             {
                 test: /\.(jpe?g|png|gif|svg)$/,
                 loaders: ["file-loader", "image-webpack-loader"]
-            }
+            },
+            { test: /\.yml$/, loaders: ["json-loader", "yaml-loader"] }
         ]
     },
     plugins: [
