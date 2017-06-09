@@ -7,7 +7,7 @@ import "@magnon/components/magnon-spinner/magnon-spinner.html";
 import "@magnon/components/magnon-card/magnon-card.html";
 import "@magnon/components/magnon-image/magnon-image.html";
 
-import Navigator from "./js/navigator/navigator.js";
+import { initNavigator } from "./js/navigator/navigator.js";
 import { buildShell } from "./js/shell/shell.js";
 
 import cookieNotification from "./notifications/cookies.html";
@@ -16,7 +16,7 @@ import cookieNotification from "./notifications/cookies.html";
 class MagnonWebsite {
     init() {
         this.setUpShell();
-        Navigator.updatePage();
+        initNavigator(this.shell);
 
         window.addEventListener("load", () => {
             if (!localStorage.getItem("goodWidthCookies")) {
@@ -32,8 +32,6 @@ class MagnonWebsite {
         this.shell = buildShell();
 
         document.body.appendChild(this.shell);
-
-        Navigator.shell = this.shell;
     }
 }
 

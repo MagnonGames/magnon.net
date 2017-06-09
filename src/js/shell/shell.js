@@ -1,4 +1,4 @@
-import Navigator from "../navigator/navigator.js";
+import { getCurrentPageName, getPageNameFromUrl, goToUrl } from "../navigator/navigator.js";
 
 const navigation = [
     ["Home", "/"],
@@ -17,7 +17,8 @@ export function buildShell() {
             a.href = link;
         } else {
             a.onclick = () => {
-                Navigator.goToPage(link.href, false, link.value);
+                const samePage = getCurrentPageName() === getPageNameFromUrl(link.href);
+                goToUrl(link.href, samePage, link.value);
             };
         }
         a.slot = "nav";
