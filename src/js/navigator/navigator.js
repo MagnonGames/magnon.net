@@ -51,7 +51,11 @@ class Navigator {
     }
 
     _loadPage(pageName) {
-        return fetchPage(pageName).then(page => {
+        if (getUrl() === "home") {
+            pageName = "thisPageAbsolutelyDoesNotExistBecauseThisIsAGoodHack :)";
+            // Patches welcome, lol xD
+        }
+        const show = page => {
             const { meta, html, script } = page;
 
             this._shell.expandContent = meta.expandContent;
@@ -64,31 +68,28 @@ class Navigator {
 
             this._currentScript = script;
             this._loadedPageName = pageName;
+        };
 
+        return fetchPage(pageName).then(page => {
+            show(page);
             return Promise.resolve();
-        });
-    }
-
-    _show404() {
-        this._shell.expandContent = false;
-        import("../../error/404.html").then(html => {
-            this.meta = {};
-            this._content.innerHTML = html;
-            Loader.hide();
+        }).catch(() => {
+            return fetchErrorPage("404").then(page => {
+                show(page);
+                return Promise.resolve();
+            });
         });
     }
 
     goToUrl(url, replace, state) {
         this._state = state;
 
-        if (replace || getPageNameFromUrl(url) === this._loadedPageName) {
+        const pageName = getPageNameFromUrl(url);
+
+        if (replace || pageName === this._loadedPageName) {
             history.replaceState(state, null, url);
         } else {
             history.pushState(state, null, url);
-        }
-
-        if (url === "home") {
-            this._show404();
         }
 
         this._update();
@@ -121,8 +122,17 @@ const fetchPage = page => {
     }).then(fetchedScript => {
         script = fetchedScript;
         return Promise.resolve({ meta, html, script});
-    }).catch(() => {
-        this.show404();
+    });
+};
+
+const fetchErrorPage = (page = "404") => {
+    return import(`../../error/${page}.html`).then(html => {
+        return Promise.resolve({
+            meta: {
+                title: page
+            },
+            html
+        });
     });
 };
 
