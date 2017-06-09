@@ -1,3 +1,5 @@
+import deepEql from "deep-eql";
+
 import Loader from "../loader/loader.js";
 
 class Navigator {
@@ -18,7 +20,14 @@ class Navigator {
 
     _setUpHistoryListener() {
         const historyStateListener = e => {
-            this._state = e.state;
+            if (!(this._prevHash !== window.location.hash &&
+                this._prevPath === window.location.pathName)) {
+                this._state = e.state;
+            }
+
+            this._prevPath = window.location.pathName;
+            this._prevHash = window.location.hash;
+
             this._update();
         };
         window.addEventListener("popstate", historyStateListener);
@@ -40,10 +49,13 @@ class Navigator {
         // Content Update
         const loadPromise = samePageAsBefore ? Promise.resolve() : this._loadPage(pageName);
         loadPromise.then(() => {
-            document.body.scrollTop = 0;
+            if (!samePageAsBefore) document.body.scrollTop = 0;
             // State Update
             if (this._currentScript && this._currentScript.state) {
-                this._currentScript.state(this._state || {});
+                if (!deepEql(this._prevState, this._state)) {
+                    this._currentScript.state(this._state || {});
+                    this._prevState = this._state;
+                }
             }
 
             Loader.hide();
