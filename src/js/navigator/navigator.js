@@ -153,7 +153,9 @@ const delegateLinks = callback => {
     const anchors = [...document.querySelectorAll("a[href]")];
 
     anchors.map(a => {
-        if (a.href.startsWith(`${location.protocol}//${location.host}/`)) {
+        const main = `${location.protocol}//${location.host}`;
+        const mainPath = `${main}${location.pathname}`;
+        if (a.href.startsWith(main) && !a.href.startsWith(mainPath)) {
             a.onclick = e => {
                 e.preventDefault();
 
