@@ -74,7 +74,7 @@ class Navigator {
             document.title = `${meta.title} - Magnon`;
 
             this._content.innerHTML = html;
-            delegateLinks(href => this.goToUrl(href));
+            delegateLinks(href => goToUrl(href));
 
             if (script) script.default();
 
@@ -154,11 +154,14 @@ const delegateLinks = callback => {
 
     anchors.map(a => {
         if (a.href.startsWith(`${location.protocol}//${location.host}/`)) {
-            a.addEventListener("click", e => {
+            a.onclick = e => {
                 e.preventDefault();
 
-                callback(a.href.match(/.+?:\/\/.+?\/(.*)/)[1]);
-            });
+                let url = a.href.match(/.+?:\/\/.+?\/(.*)/)[1];
+                if (url === "") url = "/";
+
+                callback(url);
+            };
         }
     });
 };
