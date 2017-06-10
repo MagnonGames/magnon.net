@@ -10,7 +10,7 @@
     "watch:js": "WEBPACK_WATCH=true npm run build:js",
     "watch:docker": "docker-compose up",
     "lint": "eslint",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Warning: no test specified\""
   },
   "repository": {
     "type": "git",
