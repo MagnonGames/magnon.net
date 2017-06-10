@@ -1,6 +1,6 @@
 version: "3"
 services:
-    magnon-net-static:
+    static:
         build: .
         expose:
           - "80"
