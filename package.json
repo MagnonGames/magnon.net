@@ -23,7 +23,7 @@
   },
   "homepage": "https://magnon.net",
   "dependencies": {
-    "@magnon/components": "^0.2.0",
+    "@magnon/components": "^0.3.0",
     "@webcomponents/webcomponentsjs": "^1.0.1",
     "animejs": "^2.0.2",
     "deep-eql": "^2.0.2"
