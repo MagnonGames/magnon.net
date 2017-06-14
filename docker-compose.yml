@@ -10,3 +10,8 @@ services:
           - LETSENCRYPT_HOST=magnon.net,www.magnon.net
           - LETSENCRYPT_EMAIL
         restart: on-failure
+
+networks:
+    default:
+        external:
+            name: nginx-proxy

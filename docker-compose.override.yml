@@ -9,3 +9,6 @@ services:
           - ./out:/var/www/magnon.net:ro
           - ./nginx/magnon.net:/etc/nginx/magnon.net:ro
         restart: "no"
+
+networks:
+    default:
