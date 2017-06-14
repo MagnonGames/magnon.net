@@ -2,6 +2,7 @@ version: "3"
 services:
     static:
         build: .
+        image: magnon/magnon.net:latest
         expose:
           - "80"
         environment:
