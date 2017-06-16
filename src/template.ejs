@@ -4,10 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <meta name="theme-color" content="#2F79BE">
-        <meta name="description" content="<%= meta.description %>">
-        <title><%= meta.title %> - Magnon</title>
+        <meta name="description" content="<%= htmlWebpackPlugin.options.description %>">
+        <title><%= htmlWebpackPlugin.options.title %></title>
     </head>
     <body>
-        <script src="<%= src %>"></script>
     </body>
 </html>
