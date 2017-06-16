@@ -5,7 +5,23 @@ const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 const HtmlCompiler = require("./webpack/html-compiler.js");
 
-const dev = process.env.NODE_ENV !== "production";
+const production = process.env.NODE_ENV === "production";
+
+const productionLoaders = (() => {
+    if (!production) return [];
+    return [
+        { test: /\.js$/, loader: "babel-loader" }
+    ];
+})();
+const productionPlugins = (() => {
+    if (!production) return [];
+    return [
+        new CleanWebpackPlugin(["out"]),
+        new webpack.optimize.UglifyJsPlugin({ comments: false }),
+        new webpack.optimize.OccurrenceOrderPlugin(),
+        new webpack.optimize.MinChunkSizePlugin({ minChunkSize: 10000 })
+    ];
+})();
 
 module.exports = {
     entry: "./src/main.js",
@@ -16,7 +32,12 @@ module.exports = {
     },
     module: {
         loaders: [
-            { test: /magnon.components\/.+?\.html$/, loader: "wc-loader" },
+            ...productionLoaders,
+
+            {
+                test: /magnon.components\/.+?\.html$/,
+                loader: production ? "babel-loader!wc-loader?minify=true" : "wc-loader"
+            },
             { test: /src\/.*?\.html$/, loader: "html-loader" },
             {
                 test: /\.(jpe?g|png|gif|svg)$/,
@@ -26,7 +47,8 @@ module.exports = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin(["out"]),
+        ...productionPlugins,
+
         new webpack.SourceMapDevToolPlugin(),
         new HtmlCompiler({
             outPath: "../html",
