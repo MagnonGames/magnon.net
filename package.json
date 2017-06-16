@@ -10,7 +10,8 @@
     "watch:js": "WEBPACK_WATCH=true npm run build:js",
     "watch:docker": "docker-compose up",
     "lint": "eslint",
-    "test": "echo \"Warning: no test specified\""
+    "test": "echo \"Warning: no test specified\"",
+    "webpack:json": "webpack --json > tree.json"
   },
   "repository": {
     "type": "git",
