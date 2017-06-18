@@ -150,12 +150,11 @@ const fetchErrorPage = (page = "404") => {
 };
 
 const delegateLinks = callback => {
-    const anchors = [...document.querySelectorAll("a[href]")];
+    const main = `${location.protocol}//${location.host}`;
+    const mainPath = `${main}${location.pathname}`;
 
-    anchors.map(a => {
-        const main = `${location.protocol}//${location.host}`;
-        const mainPath = `${main}${location.pathname}`;
-        if (a.href.startsWith(main) && !a.href.startsWith(mainPath)) {
+    const capture = a => {
+        if (a.href.startsWith(main) && a.href !== mainPath) {
             a.onclick = e => {
                 e.preventDefault();
 
@@ -165,7 +164,20 @@ const delegateLinks = callback => {
                 callback(url);
             };
         }
-    });
+    };
+
+    const searchForAChild = el => {
+        for (let child of el.children) {
+            if (child.tagName === "A" && child.href) {
+                capture(child);
+            }
+
+            if (child.root) searchForAChild(child.root);
+            searchForAChild(child);
+        }
+    };
+
+    searchForAChild(document.body);
 };
 
 let navigator;
