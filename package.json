@@ -6,7 +6,7 @@
     "build": "npm run build:js && npm run build:docker",
     "build:js": "webpack",
     "build:docker": "docker-compose build",
-    "watch": "npm run watch:js | (sleep 7s && npm run watch:docker)",
+    "watch": "npm run watch:js | (sleep 3s && npm run watch:docker)",
     "watch:js": "WEBPACK_WATCH=true npm run build:js",
     "watch:docker": "docker-compose up",
     "lint": "eslint",
