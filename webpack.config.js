@@ -24,6 +24,8 @@ const productionPlugins = (() => {
     ];
 })();
 
+const hash = production ? "-[hash]" : "";
+
 module.exports = new Promise((resolve, reject) => {
     generateHtmlPlugins().then(htmlPlugins => {
         resolve({
@@ -31,7 +33,7 @@ module.exports = new Promise((resolve, reject) => {
             output: {
                 path: path.resolve(__dirname, "out/static"),
                 publicPath: "static/",
-                filename: "bundle.js"
+                filename: `bundle${hash}.js`
             },
             module: {
                 loaders: [
