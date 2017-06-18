@@ -6,7 +6,7 @@ export const atElement = (el, callback) => {
     el = toElement(el);
 
     listenFor(el, () => {
-        if (document.body.scrollTop >= centerScroll(el)) {
+        if (document.body.scrollTop + window.innerHeight / 2 >= el.getBoundingClientRect().top + window.scrollY) {
             callback();
             stopListenFor(el);
         }
