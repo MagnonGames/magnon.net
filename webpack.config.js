@@ -4,6 +4,7 @@ const webpack = require("webpack");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 const generateHtmlPlugins = require("./webpack/html-plugin-generator.js");
+const FaviconGenerator = require("./webpack/favicon-generator.js");
 
 const production = process.env.NODE_ENV === "production";
 
@@ -52,7 +53,11 @@ module.exports = new Promise((resolve, reject) => {
                 ...productionPlugins,
                 ...htmlPlugins,
 
-                new webpack.SourceMapDevToolPlugin()
+                new webpack.SourceMapDevToolPlugin(),
+                new FaviconGenerator({
+                    icon: "./assets/icon.svg",
+                    color: "#2F79BE", altColor: "white", background: "#2F79BE"
+                })
             ],
             watch: process.env.WEBPACK_WATCH === "true"
         });
