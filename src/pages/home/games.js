@@ -10,12 +10,10 @@ export default () => {
     container.style.backgroundImage = `url(${pkImage})`;
 
     atElement("#games", () => anime({
-        targets: container,
-        scale: {
-            value: [0, 1],
-            easing: "easeOutElastic",
-            elasticity: 650,
-            duration: 1000
-        }
+        targets: container.querySelector("magnon-card"),
+        translateX: [-500, 0],
+        opacity: [0, 1],
+        easing: "easeInOutQuad",
+        duration: 500
     }));
 };

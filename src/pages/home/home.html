@@ -15,7 +15,10 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background: var(--magnon-black-blue);
+        background-attachment: fixed;
+        background-position: center;
+        background-color: var(--magnon-black);
+        background-image: linear-gradient(0deg, var(--magnon-black-blue) -100%, var(--magnon-black) 70%);
     }
 
     #intro magnon-logo {
@@ -61,18 +64,19 @@
 
     .game-container {
         position: relative;
+        background-attachment: fixed;
         background-size: cover;
         background-position: center;
         background-color: var(--magnon-black);
         image-rendering: pixelated;
         height: 100vh;
-        transform: scale(0);
     }
 
     .game-container > magnon-card {
         position: absolute;
         bottom: 25px;
         width: 100%;
+        opacity: 0;
     }
 
     #about {
