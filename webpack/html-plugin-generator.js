@@ -39,7 +39,7 @@ module.exports = minify => {
                 description: meta.description,
                 filename: `../html/${meta.pageName}.html`,
                 template: "./src/template.ejs",
-                inject: "head",
+                inject: "body",
                 minify,
                 hash: true
             });

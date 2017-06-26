@@ -1,6 +1,5 @@
-import "@magnon/components/magnon-logo/magnon-logo.html";
-import "@magnon/components/magnon-star-container/magnon-star-container.html";
-import "@magnon/components/magnon-button/magnon-button.html";
+// eslint-disable-next-line
+import { MagnonLogo, MagnonStarContainer, MagnonButton } from "@magnon/components";
 
 import { scrollTo } from "../../js/scroll-utils/scroll-utils.js";
 import members from "../../members.yml";

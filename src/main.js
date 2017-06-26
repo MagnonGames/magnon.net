@@ -1,18 +1,17 @@
 import "@webcomponents/webcomponentsjs/webcomponents-sd-ce.js";
 
-import "@magnon/components/magnon-shell/magnon-shell.html";
-import "@magnon/components/magnon-notifications/magnon-notifications.html";
-import "@magnon/components/magnon-icon/magnon-icon.html";
-import "@magnon/components/magnon-spinner/magnon-spinner.html";
-import "@magnon/components/magnon-card/magnon-card.html";
-import "@magnon/components/magnon-image/magnon-image.html";
+/* eslint-disable */
+import {
+    MagnonShell, MagnonNotifications, MagnonIcon, MagnonSpinner,
+    MagnonCard, MagnonImage
+} from "@magnon/components";
+/* eslint-enable */
 
 import { initNavigator } from "./js/navigator/navigator.js";
 import { buildShell } from "./js/shell/shell.js";
 
 import cookieNotification from "./notifications/cookies.html";
 
-/* globals MagnonNotifications */
 class MagnonWebsite {
     init() {
         this.setUpShell();
