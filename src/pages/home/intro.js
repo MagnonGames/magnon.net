@@ -14,17 +14,19 @@ export default () => {
     };
     document.addEventListener("scroll", scrollListener);
 
-    const textContainer = document.querySelector("#intro-text");
-    const text = textContainer.textContent;
+    const lines = [...document.querySelectorAll("#intro-text > .line")];
+    const lineTexts = lines.map(line => line.textContent);
 
     const spans = [];
 
-    textContainer.innerHTML = "";
-    text.trim().split(" ").forEach(s => {
-        const span = document.createElement("span");
-        span.textContent = s;
-        textContainer.appendChild(span);
-        spans.push(span);
+    lines.forEach((line, i) => {
+        line.innerHTML = "";
+        lineTexts[i].trim().split(" ").forEach(s => {
+            const span = document.createElement("span");
+            span.textContent = s;
+            line.appendChild(span);
+            spans.push(span);
+        });
     });
 
     anime({

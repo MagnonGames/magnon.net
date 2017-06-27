@@ -36,8 +36,11 @@
         text-align: center;
     }
 
-    #intro-text > * {
+    #intro-text * {
         display: inline-block;
+    }
+
+    #intro-text > .line > * {
         margin: 2px;
     }
 
@@ -152,7 +155,8 @@
         <magnon-logo animate></magnon-logo>
         <h1>Magnon</h1>
         <div id="intro-text">
-            Trying to push games forward, little at a time
+            <span class="line">Trying to push games forward,</span>
+            <span class="line">little at a time</span>
         </div>
         <div id="intro-hint">
             More down here!
