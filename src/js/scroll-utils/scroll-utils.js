@@ -2,11 +2,17 @@ import anime from "animejs";
 
 const scrollListeners = new Map();
 
+const scrollingElement = document.scrollingElement || document.documentElement;
+
+const getScrollTop = () => {
+    return scrollingElement.scrollTop;
+};
+
 export const atElement = (el, callback) => {
     el = toElement(el);
 
     listenFor(el, () => {
-        if (document.body.scrollTop + window.innerHeight / 2 >= el.getBoundingClientRect().top + window.scrollY) {
+        if (getScrollTop() + window.innerHeight / 2 >= el.getBoundingClientRect().top + getScrollTop()) {
             callback();
             stopListenFor(el);
         }
@@ -16,7 +22,7 @@ export const atElement = (el, callback) => {
 export const scrollTo = el => {
     el = toElement(el);
     anime({
-        targets: document.body,
+        targets: scrollingElement,
         scrollTop: centerScroll(el),
         duration: 500,
         easing: "easeInOutQuad",
@@ -51,6 +57,6 @@ const toElement = el => {
 
 const centerScroll = el => {
     let { top, height } = el.getBoundingClientRect();
-    top += window.scrollY;
+    top += getScrollTop();
     return Math.round(top - (window.innerHeight - height) / 2);
 };

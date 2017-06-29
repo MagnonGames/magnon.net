@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import { MagnonLogo, MagnonStarContainer, MagnonButton } from "@magnon/components";
+import { MagnonLogo, MagnonStarContainer, MagnonButton, MagnonImage } from "@magnon/components";
 
 import { scrollTo } from "../../js/scroll-utils/scroll-utils.js";
 import members from "../../members.yml";
@@ -25,18 +25,23 @@ export const state = state => {
 const createSocialBubbles = () => {
     const container = document.querySelector("#members");
 
-    container.innerHTML += members.map(member => {
+    members.forEach(member => {
         member.socialMedia = member.socialMedia || {};
-        return `<magnon-image disable-image-url show-alt
-            alt="${member.name} - ${member.alias}" src="${member.image}?s=500">
+        const image = new MagnonImage();
+        image.src = `${member.image}?s=500`;
+        image.alt = `${member.name} - ${member.alias}`;
+        image.disableImageUrl = true;
+        image.showAlt = true;
+        image.innerHTML = `
             <h3 slot="description-title">${member.descriptionTitle}</h3>
             ${member.description}
             <div class="user-social">
                 ${Object.keys(member.socialMedia).map(socialMedia => {
                     const name = `magnon-${socialMedia}-button`;
                     return `<${name} user="${member.socialMedia[socialMedia]}"></${name}>`;
-                }).join(" ")}
+                }).join("")}
             </div>
-        </magnon-image>`;
-    }).join(" ");
+        `;
+        container.appendChild(image);
+    });
 };

@@ -47,6 +47,8 @@
     #intro-hint {
         position: absolute;
         bottom: 15px;
+        left: 0;
+        right: 0;
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -87,7 +89,7 @@
         position: relative;
     }
 
-    #about > div {
+    #about-container {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -153,9 +155,14 @@
     }
 
     @media(min-width: 1200px) {
+        .game-container {
+            height: 80vh;
+        }
+
         .game-container > magnon-card {
             bottom: 50px;
             left: 50px;
+            right: auto;
             width: 40vw;
         }
 
@@ -197,7 +204,7 @@
     </div>
 
     <magnon-star-container parallax id="about">
-        <div>
+        <div id="about-container">
             <magnon-card id="team">
                 <h2 slot="title">The Team</h2>
                 <span>
