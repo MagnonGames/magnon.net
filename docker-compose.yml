@@ -6,7 +6,7 @@ services:
         expose:
           - "80"
         environment:
-          - VIRTUAL_HOST=magnon.net,www.magnon.net,*.magnon.net
+          - VIRTUAL_HOST=*.magnon.net,magnon.net,www.magnon.net
           - LETSENCRYPT_HOST=magnon.net,www.magnon.net
           - LETSENCRYPT_EMAIL
         restart: on-failure
