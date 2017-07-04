@@ -6,6 +6,28 @@
         <meta name="theme-color" content="#2F79BE">
         <meta name="description" content="<%= htmlWebpackPlugin.options.description %>">
         <title><%= htmlWebpackPlugin.options.title %></title>
+
+        <script>
+            (function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+            })(window,document,"script","https://www.google-analytics.com/analytics.js","ga");
+
+            ga("create", "UA-58235807-1", "auto");
+
+            ga("require", "cleanUrlTracker", { stripQuery: true, trailingSlash: "remove" });
+            ga("require", "impressionTracker", {
+                elements: ["intro", "games", "about"],
+                rootMargin: "-75px 0px"
+            });
+            ga("require", "maxScrollTracker");
+            ga("require", "outboundLinkTracker");
+            ga("require", "pageVisibilityTracker");
+            ga("require", "socialWidgetTracker");
+            ga("require", "urlChangeTracker");
+
+            ga("send", "pageview");
+        </script>
     </head>
     <body>
         <noscript>

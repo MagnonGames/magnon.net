@@ -27,9 +27,11 @@
     "@magnon/components": "^0.3.0",
     "@webcomponents/webcomponentsjs": "^1.0.1",
     "animejs": "^2.0.2",
+    "autotrack": "^2.4.1",
     "babel-plugin-transform-custom-element-classes": "^0.1.0",
     "babel-plugin-transform-es2015-classes": "^6.24.1",
-    "deep-eql": "^2.0.2"
+    "deep-eql": "^2.0.2",
+    "intersection-observer": "^0.3.2"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",

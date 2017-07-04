@@ -9,6 +9,7 @@ import {
 
 import { initNavigator } from "./js/navigator/navigator.js";
 import { buildShell } from "./js/shell/shell.js";
+import "./js/analytics.js";
 
 import cookieNotification from "./notifications/cookies.html";
 
