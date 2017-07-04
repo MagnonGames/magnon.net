@@ -121,13 +121,15 @@ class Navigator {
             return this._update();
         }).then(() => {
             // Fade in
-            anime({
+            return anime({
                 targets: content,
                 translateY: ["-10vh", "0"],
                 opacity: 1,
                 easing: "easeInOutQuad",
                 duration: 300
-            });
+            }).finished;
+        }).then(() => {
+            content.removeAttribute("style");
         });
     }
 }
