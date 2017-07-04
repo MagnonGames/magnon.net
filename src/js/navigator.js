@@ -1,4 +1,5 @@
 import deepEql from "deep-eql";
+import anime from "animejs";
 
 import Loader from "./loader/loader.js";
 
@@ -41,24 +42,27 @@ class Navigator {
     }
 
     _update() {
-        const pageName = getCurrentPageName();
-        const samePageAsBefore = pageName === this._loadedPageName;
+        return new Promise(resolve => {
+            const pageName = getCurrentPageName();
+            const samePageAsBefore = pageName === this._loadedPageName;
 
-        if (!samePageAsBefore) Loader.show();
+            if (!samePageAsBefore) Loader.show();
 
-        // Content Update
-        const loadPromise = samePageAsBefore ? Promise.resolve() : this._loadPage(pageName);
-        loadPromise.then(() => {
-            if (!samePageAsBefore) document.body.scrollTop = 0;
-            // State Update
-            if (this._currentScript && this._currentScript.state) {
-                if (!deepEql(this._prevState, this._state)) {
-                    this._currentScript.state(this._state || {});
-                    this._prevState = this._state;
+            // Content Update
+            const loadPromise = samePageAsBefore ? Promise.resolve() : this._loadPage(pageName);
+            loadPromise.then(() => {
+                if (!samePageAsBefore) document.body.scrollTop = 0;
+                // State Update
+                if (this._currentScript && this._currentScript.state) {
+                    if (!deepEql(this._prevState, this._state)) {
+                        this._currentScript.state(this._state || {});
+                        this._prevState = this._state;
+                    }
                 }
-            }
 
-            Loader.hide();
+                Loader.hide();
+                resolve();
+            });
         });
     }
 
@@ -95,17 +99,36 @@ class Navigator {
     }
 
     goToUrl(url, replace, state) {
-        this._state = state;
+        // Fade out
+        const content = this._shell.root.querySelector("#content-container");
+        anime({
+            targets: content,
+            translateY: "10vh",
+            opacity: 0,
+            easing: "easeInOutQuad",
+            duration: 300
+        }).finished.then(() => {
+            this._state = state;
 
-        const pageName = getPageNameFromUrl(url);
+            const pageName = getPageNameFromUrl(url);
 
-        if (replace || pageName === this._loadedPageName) {
-            history.replaceState(state, null, url);
-        } else {
-            history.pushState(state, null, url);
-        }
+            if (replace || pageName === this._loadedPageName) {
+                history.replaceState(state, null, url);
+            } else {
+                history.pushState(state, null, url);
+            }
 
-        this._update();
+            return this._update();
+        }).then(() => {
+            // Fade in
+            anime({
+                targets: content,
+                translateY: ["-10vh", "0"],
+                opacity: 1,
+                easing: "easeInOutQuad",
+                duration: 300
+            });
+        });
     }
 }
 
