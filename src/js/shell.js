@@ -1,9 +1,6 @@
-import { getCurrentPageName, getPageNameFromUrl, goToUrl } from "./navigator.js";
-
 const navigation = [
     ["Home", "/"],
-    ["Games", { href: "/", value: { scroll: "#games" }}],
-    ["About Us", { href: "/", value: { scroll: "#about" }}],
+    ["Projects", "/projects"],
     ["Blog", "https://blog.magnon.net"]
 ];
 
@@ -18,16 +15,7 @@ const buildNavigationElements = (navigationList, slot) => {
     return navigationList.map(nav => {
         const a = document.createElement("a");
         a.textContent = nav[0];
-
-        const link = nav[1];
-        if (typeof link === "string") {
-            a.href = link;
-        } else {
-            a.onclick = () => {
-                const samePage = getCurrentPageName() === getPageNameFromUrl(link.href);
-                goToUrl(link.href, samePage, link.value);
-            };
-        }
+        a.href = nav[1];
         a.slot = slot;
         return a;
     });
