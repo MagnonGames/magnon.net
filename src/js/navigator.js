@@ -1,6 +1,6 @@
 import deepEql from "deep-eql";
 
-import Loader from "../loader/loader.js";
+import Loader from "./loader/loader.js";
 
 class Navigator {
     constructor(shell) {
@@ -124,12 +124,12 @@ export const getCurrentPageName = () => {
 
 const fetchPage = page => {
     let meta, html, script;
-    return import(`../../pages/${page}/meta.json`).then(fetchedMeta => {
+    return import(`../pages/${page}/meta.json`).then(fetchedMeta => {
         meta = fetchedMeta;
-        return import(`../../pages/${page}/${page}.html`);
+        return import(`../pages/${page}/${page}.html`);
     }).then(fetchedHtml => {
         html = fetchedHtml;
-        return import(`../../pages/${page}/${page}.js`)
+        return import(`../pages/${page}/${page}.js`)
             .then(js => Promise.resolve(js))
             .catch(() => Promise.resolve());
     }).then(fetchedScript => {
@@ -139,7 +139,7 @@ const fetchPage = page => {
 };
 
 const fetchErrorPage = (page = "404") => {
-    return import(`../../error/${page}.html`).then(html => {
+    return import(`../error/${page}.html`).then(html => {
         return Promise.resolve({
             meta: {
                 title: page

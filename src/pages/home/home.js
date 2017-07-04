@@ -1,7 +1,7 @@
 // eslint-disable-next-line
 import { MagnonLogo, MagnonStarContainer, MagnonButton, MagnonImage } from "@magnon/components";
 
-import { scrollTo } from "../../js/scroll-utils/scroll-utils.js";
+import { scrollTo } from "../../js/scroll-utils.js";
 import members from "../../members.yml";
 
 import intro from "./intro.js";

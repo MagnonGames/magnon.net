@@ -7,8 +7,8 @@ import {
 } from "@magnon/components";
 /* eslint-enable */
 
-import { initNavigator } from "./js/navigator/navigator.js";
-import { buildShell } from "./js/shell/shell.js";
+import { initNavigator } from "./js/navigator.js";
+import { buildShell } from "./js/shell.js";
 import "./js/analytics.js";
 
 import cookieNotification from "./notifications/cookies.html";

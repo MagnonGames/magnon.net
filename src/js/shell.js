@@ -1,4 +1,4 @@
-import { getCurrentPageName, getPageNameFromUrl, goToUrl } from "../navigator/navigator.js";
+import { getCurrentPageName, getPageNameFromUrl, goToUrl } from "./navigator.js";
 
 const navigation = [
     ["Home", "/"],

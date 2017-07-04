@@ -1,6 +1,6 @@
 import anime from "animejs";
 
-import { atElement } from "../../js/scroll-utils/scroll-utils.js";
+import { atElement } from "../../js/scroll-utils.js";
 
 export default () => {
     atElement("#about", () => {
