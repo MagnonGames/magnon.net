@@ -2,6 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const BabiliWebpackPlugin = require("babili-webpack-plugin");
 
 const generateHtmlPlugins = require("./webpack/html-plugin-generator.js");
 const FaviconGenerator = require("./webpack/favicon-generator.js");
@@ -18,7 +19,7 @@ const productionPlugins = (() => {
     if (!production) return [];
     return [
         new CleanWebpackPlugin(["out"]),
-        new webpack.optimize.UglifyJsPlugin({ comments: false }),
+        new BabiliWebpackPlugin(),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.MinChunkSizePlugin({ minChunkSize: 10000 })
     ];

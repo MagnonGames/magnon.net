@@ -1,0 +1,17 @@
+{
+    "presets": [
+        ["env", {
+            "modules": false
+        }]
+    ],
+    "env": {
+        "production": {
+            "presets": ["babili"]
+        }
+    },
+    "plugins": [
+        "syntax-dynamic-import",
+        "transform-custom-element-classes",
+        "transform-es2015-classes"
+    ]
+}
