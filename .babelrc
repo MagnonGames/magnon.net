@@ -1,6 +1,10 @@
 {
     "presets": [
         ["env", {
+            "targets": {
+                "browsers": ["last 2 versions", ">3%"],
+                "ie": 11
+            },
             "modules": false
         }]
     ],
