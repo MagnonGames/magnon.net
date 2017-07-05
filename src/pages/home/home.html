@@ -30,6 +30,10 @@
         top: -100vw;
     }
 
+    #intro-sub {
+        position: relative;
+    }
+
     #intro-text {
         margin: 50px 50px 0 50px;
         font-size: 0px;
@@ -43,6 +47,20 @@
 
     #intro-text > .line > * {
         margin: 2px;
+    }
+
+    #intro-navigation {
+        position: absolute;
+        top: 50px;
+        opacity: 0;
+        text-align: center;
+        width: 100%;
+    }
+
+    #intro-navigation > * {
+        margin: 0 10px;
+        --magnon-button-color: var(--magnon-neon-teal);
+        --magnon-button-contrast-color: var(--magnon-black);
     }
 
     #intro-hint {
@@ -128,6 +146,10 @@
     }
 
     @media(min-width: 580px) {
+        #intro-navigation > * {
+            margin: 0 30px;
+        }
+
         .game-container {
             min-height: 80vh;
         }
@@ -178,9 +200,15 @@
     <div id="intro">
         <magnon-logo animate></magnon-logo>
         <h1>Magnon</h1>
-        <div id="intro-text">
-            <span class="line">Trying to push games forward,</span>
-            <span class="line">little at a time</span>
+        <div id="intro-sub">
+            <div id="intro-text">
+                <span class="line">Trying to push games forward,</span>
+                <span class="line">little at a time</span>
+            </div>
+            <div id="intro-navigation">
+                <magnon-button class="to-games">Our Games</magnon-button>
+                <magnon-button class="to-about">About Us</magnon-button>
+            </div>
         </div>
         <div id="intro-hint">
             More down here!

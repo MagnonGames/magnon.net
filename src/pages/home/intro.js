@@ -1,7 +1,12 @@
 import anime from "animejs";
 
+import { scrollTo } from "../../js/scroll-utils.js";
+
 export default () => {
     let hasScrolled = false, hasHinted = false;
+
+    document.querySelector(".to-games").addEventListener("click", () => scrollTo("#games"));
+    document.querySelector(".to-about").addEventListener("click", () => scrollTo("#about"));
 
     const scrollListener = () => {
         if (!hasHinted) {
@@ -13,30 +18,6 @@ export default () => {
         document.removeEventListener("scroll", scrollListener);
     };
     document.addEventListener("scroll", scrollListener);
-
-    const lines = [...document.querySelectorAll("#intro-text > .line")];
-    const lineTexts = lines.map(line => line.textContent);
-
-    const spans = [];
-
-    lines.forEach((line, i) => {
-        line.innerHTML = "";
-        lineTexts[i].trim().split(" ").forEach(s => {
-            const span = document.createElement("span");
-            span.textContent = s;
-            line.appendChild(span);
-            spans.push(span);
-        });
-    });
-
-    anime({
-        targets: spans,
-        translateY: [30, 0],
-        opacity: [0, 1],
-        duration: 300,
-        easing: "easeOutQuad",
-        delay: (n, i) => 1000 + i * 130 + (i >= 5 ? 300 : 0)
-    });
 
     anime.easings["bounceOut"] = t => {
         if (t < (1 / 2.75)) {
@@ -73,4 +54,57 @@ export default () => {
             });
         }
     }, 7000);
+
+    runAnimation();
+};
+
+const runAnimation = async() => {
+    const textContainer = document.querySelector("#intro-text");
+    const introNavigation = document.querySelector("#intro-navigation");
+
+    const lines = [...textContainer.querySelectorAll(".line")];
+    const lineTexts = lines.map(line => line.textContent);
+
+    const spans = [];
+
+    lines.forEach((line, i) => {
+        line.innerHTML = "";
+        lineTexts[i].trim().split(" ").forEach(s => {
+            const span = document.createElement("span");
+            span.textContent = s;
+            line.appendChild(span);
+            spans.push(span);
+        });
+    });
+
+    await anime({
+        targets: spans,
+        translateY: [30, 0],
+        opacity: [0, 1],
+        duration: 300,
+        easing: "easeOutQuad",
+        delay: (n, i) => 1000 + i * 130 + (i >= 5 ? 300 : 0)
+    }).finished;
+
+    await wait(1000);
+
+    anime({
+        targets: textContainer,
+        opacity: 0,
+        easing: "linear",
+        duration: 300
+    });
+
+    await wait(500);
+
+    introNavigation.style.opacity = 1;
+    await anime({
+        targets: introNavigation,
+        rotateX: ["180deg", "0deg"],
+        duration: 1500
+    }).finished;
+};
+
+const wait = ms => {
+    return new Promise(resolve => setTimeout(resolve, ms));
 };
