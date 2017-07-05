@@ -3,6 +3,7 @@ const webpack = require("webpack");
 
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const BabiliWebpackPlugin = require("babili-webpack-plugin");
+const CircularDependencyPlugin = require("circular-dependency-plugin");
 
 const generateHtmlPlugins = require("./webpack/html-plugin-generator.js");
 const FaviconGenerator = require("./webpack/favicon-generator.js");
@@ -78,6 +79,9 @@ module.exports = new Promise((resolve, reject) => {
                 new FaviconGenerator({
                     icon: "./assets/icon.svg",
                     color: "#2F79BE", altColor: "white", background: "#2F79BE"
+                }),
+                new CircularDependencyPlugin({
+                    exclude: /node_modules/
                 })
             ],
             watch: process.env.WEBPACK_WATCH === "true"
