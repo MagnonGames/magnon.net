@@ -1,39 +1,17 @@
-import "@webcomponents/webcomponentsjs/webcomponents-sd-ce.js";
+const isBrowser = window;
 
-/* eslint-disable */
-import {
-    MagnonShell, MagnonNotifications, MagnonNotification, MagnonIcon,
-    MagnonProgressBar, MagnonCard, MagnonImage
-} from "@magnon/components";
-/* eslint-enable */
+const supportsSD = "attachShadow" in Element.prototype && "getRootNode" in Element.prototype;
+const supportsCE = window.customElements;
 
-import { initNavigator } from "./js/navigator.js";
-import { buildShell } from "./js/shell.js";
-import "./js/analytics.js";
-
-import cookieNotification from "./notifications/cookies.html";
-
-class MagnonWebsite {
-    init() {
-        this.setUpShell();
-        initNavigator(this.shell);
-
-        window.addEventListener("load", () => {
-            if (!localStorage.getItem("goodWidthCookies")) {
-                const notification = MagnonNotifications.send(cookieNotification);
-                notification.addEventListener("close", () => {
-                    localStorage.setItem("goodWidthCookies", true);
-                });
-            }
-        });
+const init = async() => {
+    if (isBrowser && !supportsSD || !supportsCE) {
+        await import("@webcomponents/webcomponentsjs/webcomponents-sd-ce.js");
+        console.log("Loaded SD and CE polyfills");
     }
 
-    setUpShell() {
-        this.shell = buildShell();
+    const { MagnonWebsite } = await import("./magnon-website.js");
+    const website = new MagnonWebsite();
+    website.init();
+};
 
-        document.body.appendChild(this.shell);
-    }
-}
-
-const website = new MagnonWebsite();
-website.init();
+init();
