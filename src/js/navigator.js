@@ -73,7 +73,18 @@ class Navigator {
             this._shell.expandContent = meta.expandContent;
             document.title = `${meta.title} - Magnon`;
 
-            this._content.innerHTML = html;
+            const temp = document.createElement("div");
+            temp.innerHTML = html;
+
+            let child = this._content.firstChild;
+            while (child) {
+                this._content.removeChild(child);
+                child = this._content.firstChild;
+            }
+
+            for (let child of temp.childNodes) {
+                this._content.appendChild(child);
+            }
             delegateLinks(href => goToUrl(href));
 
             if (script) script.default();
