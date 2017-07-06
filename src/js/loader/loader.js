@@ -2,7 +2,11 @@ import html from "./loader.html";
 
 class Loader {
     constructor() {
-        document.body.innerHTML += html;
+        const temp = document.createElement("div");
+        temp.innerHTML = html;
+        for (let child of temp.childNodes) {
+            document.body.appendChild(child);
+        }
 
         this._progressBar = document.querySelector("#loading-overlay > magnon-progress-bar");
         this._progressBar.visible = false;
