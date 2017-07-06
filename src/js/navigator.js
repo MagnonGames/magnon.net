@@ -87,10 +87,19 @@ class Navigator {
             return Promise.resolve();
         }).catch(e => {
             console.error(e);
-            return fetchErrorPage("404").then(page => {
-                show(page);
-                return Promise.resolve();
-            });
+            if (e.message.startsWith("Cannot find module")) {
+                return fetchErrorPage("404").then(page => {
+                    show(page);
+                    return Promise.resolve();
+                });
+            } else {
+                return fetchErrorPage("dev").then(page => {
+                    const error = `${e.message}<br><br>${(e.stack || "").replace(/\n/g, "<br>")}`;
+                    page.html = page.html.replace(/<% error %>/g, error);
+                    show(page);
+                    return Promise.resolve();
+                });
+            }
         });
     }
 
