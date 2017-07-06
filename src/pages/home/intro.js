@@ -12,8 +12,11 @@ export default () => {
         if (!hasHinted) {
             hasScrolled = true;
         } else {
-            document.querySelector("#intro-hint").style.transition = "0.3s opacity";
-            document.querySelector("#intro-hint").style.opacity = "0";
+            const hint = document.querySelector("#intro-hint");
+            if (hint) {
+                hint.style.transition = "0.3s opacity";
+                hint.style.opacity = "0";
+            }
         }
         document.removeEventListener("scroll", scrollListener);
     };
