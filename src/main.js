@@ -3,7 +3,7 @@ import "@webcomponents/webcomponentsjs/webcomponents-sd-ce.js";
 /* eslint-disable */
 import {
     MagnonShell, MagnonNotifications, MagnonNotification, MagnonIcon,
-    MagnonSpinner, MagnonCard, MagnonImage
+    MagnonProgressBar, MagnonCard, MagnonImage
 } from "@magnon/components";
 /* eslint-enable */
 

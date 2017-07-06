@@ -4,21 +4,25 @@ class Loader {
     constructor() {
         document.body.innerHTML += html;
 
-        this._container = document.querySelector("#loading-overlay");
-        this._backdrop = document.querySelector("#loading-backdrop");
+        this._progressBar = document.querySelector("#loading-overlay > magnon-progress-bar");
+        this._progressBar.visible = false;
     }
 
     show() {
-        this._container.style.pointerEvents = "all";
-        this._container.style.opacity = "1";
-        this._backdrop.style.opacity = "0.5";
+        this._progressBar.animate = true;
+        this._progressBar.visible = true;
     }
 
     hide() {
+        this._progressBar.visible = false;
         setTimeout(() => {
-            this._container.style.pointerEvents = "none";
-            this._container.style.opacity = "0";
-        }, 100);
+            this._progressBar.animate = false;
+            this._progressBar.progress = 0;
+        }, 200);
+    }
+
+    setProgress(value) {
+        this._progressBar.progress = value;
     }
 }
 

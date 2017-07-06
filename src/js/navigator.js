@@ -46,8 +46,6 @@ class Navigator {
             const pageName = getCurrentPageName();
             const samePageAsBefore = pageName === this._loadedPageName;
 
-            if (!samePageAsBefore) Loader.show();
-
             // Content Update
             const loadPromise = samePageAsBefore ? Promise.resolve() : this._loadPage(pageName);
             loadPromise.then(() => {
@@ -59,8 +57,6 @@ class Navigator {
                         this._prevState = this._state;
                     }
                 }
-
-                Loader.hide();
                 resolve();
             });
         });
@@ -101,6 +97,8 @@ class Navigator {
     goToUrl(url, replace, state) {
         // Fade out
         const content = this._shell.root.querySelector("#content-container");
+        Loader.show();
+        Loader.setProgress(30);
         anime({
             targets: content,
             translateY: "10vh",
@@ -108,6 +106,8 @@ class Navigator {
             easing: "easeInOutQuad",
             duration: 300
         }).finished.then(() => {
+            Loader.setProgress(33);
+
             this._state = state;
 
             const pageName = getPageNameFromUrl(url);
@@ -120,6 +120,8 @@ class Navigator {
 
             return this._update();
         }).then(() => {
+            Loader.setProgress(80);
+
             // Fade in
             return anime({
                 targets: content,
@@ -129,7 +131,11 @@ class Navigator {
                 duration: 300
             }).finished;
         }).then(() => {
+            Loader.setProgress(100);
             content.removeAttribute("style");
+            Loader.hide();
+        }).catch(() => {
+            Loader.hide();
         });
     }
 }
