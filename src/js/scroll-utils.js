@@ -58,5 +58,6 @@ const toElement = el => {
 const centerScroll = el => {
     let { top, height } = el.getBoundingClientRect();
     top += getScrollTop();
+    height = Math.min(height, window.innerHeight);
     return Math.round(top - (window.innerHeight - height) / 2);
 };
