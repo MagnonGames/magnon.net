@@ -95,6 +95,9 @@ class Navigator {
     }
 
     goToUrl(url, replace, state) {
+        // Don't navigate if trying to go to the same page
+        if ((!url.startsWith("/") ? `/${url}` : url) === location.pathname) return;
+
         // Fade out
         const content = this._shell.root.querySelector("#content-container");
         Loader.show();
