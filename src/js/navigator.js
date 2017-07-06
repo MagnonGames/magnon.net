@@ -208,8 +208,11 @@ const delegateLinks = callback => {
     const mainPath = `${main}${location.pathname}`;
 
     const capture = a => {
-        if (a.href.startsWith(main) && a.href !== mainPath) {
+        if (a.href.startsWith(main)) {
             a.onclick = e => {
+                // Skip if href is the same but has a # in it
+                if ((new RegExp(`^${mainPath.replace(/[.:/]/g, "\\$&")}#`)).test(a.href)) return;
+
                 e.preventDefault();
 
                 let url = a.href.match(/.+?:\/\/.+?\/(.*)/)[1];
