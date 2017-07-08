@@ -224,7 +224,7 @@ const delegateLinks = callback => {
     };
 
     const searchForAChild = el => {
-        for (let child of el.children) {
+        for (let child of el.childNodes) {
             if (child.tagName === "A" && child.href) {
                 capture(child);
             }
