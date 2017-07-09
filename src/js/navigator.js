@@ -123,7 +123,7 @@ class Navigator {
         scrollTo(0);
 
         // Destructure page
-        if (this._currentScript.away) this._currentScript.away();
+        if (this._currentScript && this._currentScript.away) this._currentScript.away();
 
         // Fade out
         const content = this._shell.root.querySelector("#content-container");
