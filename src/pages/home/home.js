@@ -4,7 +4,7 @@ import { MagnonLogo, MagnonStarContainer, MagnonButton, MagnonImage } from "@mag
 import { scrollTo } from "../../js/scroll-utils.js";
 import members from "../../members.yml";
 
-import intro from "./intro.js";
+import intro, { away as introAway } from "./intro.js";
 import games from "./games.js";
 import about from "./about.js";
 
@@ -20,6 +20,10 @@ export const state = state => {
     if (state.scroll) {
         scrollTo(state.scroll);
     }
+};
+
+export const away = () => {
+    introAway();
 };
 
 const createSocialBubbles = () => {

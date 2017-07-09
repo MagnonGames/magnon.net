@@ -122,6 +122,9 @@ class Navigator {
         // Scroll up
         scrollTo(0);
 
+        // Destructure page
+        if (this._currentScript.away) this._currentScript.away();
+
         // Fade out
         const content = this._shell.root.querySelector("#content-container");
         Loader.show();

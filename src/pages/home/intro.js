@@ -2,24 +2,51 @@ import anime from "animejs";
 
 import { scrollTo } from "../../js/scroll-utils.js";
 
+let hasScrolled, hasHinted, timeoutId;
+
+const scrollListener = () => {
+    if (!hasHinted) {
+        hasScrolled = true;
+    } else {
+        const hint = document.querySelector("#intro-hint");
+        if (hint) {
+            hint.style.transition = "0.3s opacity";
+            hint.style.opacity = "0";
+        }
+    }
+    document.removeEventListener("scroll", scrollListener);
+};
+
+const hintTimeoutCallback = () => {
+    if (!hasScrolled) {
+        hasHinted = true;
+
+        anime({
+            targets: "#intro-hint",
+            translateY: [-50, 0],
+            opacity: [0, 1],
+            duration: 1000,
+            easing: "easeOutQuad"
+        });
+
+        anime({
+            targets: "#intro-hint > magnon-icon",
+            translateY: [
+                { value: -20, duration: 400, easing: "easeInOutQuad" },
+                { value: 0, duration: 600, delay: 400, easing: "bounceOut" }
+            ],
+            delay: 1500,
+            loop: true
+        });
+    }
+};
+
 export default () => {
-    let hasScrolled = false, hasHinted = false;
+    hasScrolled = hasHinted = false;
 
     document.querySelector(".to-games").addEventListener("click", () => scrollTo("#games"));
     document.querySelector(".to-about").addEventListener("click", () => scrollTo("#about"));
 
-    const scrollListener = () => {
-        if (!hasHinted) {
-            hasScrolled = true;
-        } else {
-            const hint = document.querySelector("#intro-hint");
-            if (hint) {
-                hint.style.transition = "0.3s opacity";
-                hint.style.opacity = "0";
-            }
-        }
-        document.removeEventListener("scroll", scrollListener);
-    };
     document.addEventListener("scroll", scrollListener);
 
     anime.easings["bounceOut"] = t => {
@@ -34,31 +61,14 @@ export default () => {
         }
     };
 
-    setTimeout(() => {
-        if (!hasScrolled) {
-            hasHinted = true;
-
-            anime({
-                targets: "#intro-hint",
-                translateY: [-50, 0],
-                opacity: [0, 1],
-                duration: 1000,
-                easing: "easeOutQuad"
-            });
-
-            anime({
-                targets: "#intro-hint > magnon-icon",
-                translateY: [
-                    { value: -20, duration: 400, easing: "easeInOutQuad" },
-                    { value: 0, duration: 600, delay: 400, easing: "bounceOut" }
-                ],
-                delay: 1500,
-                loop: true
-            });
-        }
-    }, 7000);
+    timeoutId = setTimeout(hintTimeoutCallback, 7000);
 
     runAnimation();
+};
+
+export const away = () => {
+    document.removeEventListener("scroll", scrollListener);
+    clearTimeout(timeoutId);
 };
 
 const runAnimation = async() => {
