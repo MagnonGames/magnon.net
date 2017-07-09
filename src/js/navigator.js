@@ -2,6 +2,7 @@ import deepEql from "deep-eql";
 import anime from "animejs";
 
 import Loader from "./loader/loader.js";
+import { scrollTo } from "./scroll-utils.js";
 
 class Navigator {
     constructor(shell) {
@@ -117,6 +118,9 @@ class Navigator {
     goToUrl(url, replace, state) {
         // Don't navigate if trying to go to the same page
         if ((!url.startsWith("/") ? `/${url}` : url) === location.pathname) return;
+
+        // Scroll up
+        scrollTo(0);
 
         // Fade out
         const content = this._shell.root.querySelector("#content-container");

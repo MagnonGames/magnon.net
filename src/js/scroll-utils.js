@@ -20,10 +20,11 @@ export const atElement = (el, callback) => {
 };
 
 export const scrollTo = el => {
-    el = toElement(el);
+    const isNumber = typeof el === "number";
+    if (!isNumber) el = toElement(el);
     anime({
         targets: scrollingElement,
-        scrollTop: centerScroll(el),
+        scrollTop: isNumber ? el : centerScroll(el),
         duration: 500,
         easing: "easeInOutQuad",
         update: scrollListener
