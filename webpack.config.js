@@ -53,11 +53,16 @@ module.exports = new Promise((resolve, reject) => {
                 loaders: [
                     ...productionLoaders,
 
+                    { test: /magnon.components\/.+?\.js$/, loader: "./webpack/html-css-in-js-minify.js" },
                     {
-                        test: /magnon.components\/.+?\.html$/,
-                        loader: production ? "babel-loader!wc-loader?minify=true" : "wc-loader"
+                        test: /src\/.*?\.html$/,
+                        loader: {
+                            loader: "html-loader",
+                            options: {
+                                minimize: production
+                            }
+                        }
                     },
-                    { test: /src\/.*?\.html$/, loader: "html-loader" },
                     {
                         test: /\.(jpe?g|png|gif|svg)$/,
                         loaders: [
