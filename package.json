@@ -24,7 +24,7 @@
   },
   "homepage": "https://magnon.net",
   "dependencies": {
-    "@magnon/components": "^0.6.0",
+    "@magnon/components": "^0.6.1",
     "@webcomponents/webcomponentsjs": "^1.0.1",
     "animejs": "^2.0.2",
     "autotrack": "^2.4.1",
