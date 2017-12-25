@@ -45,7 +45,7 @@
         display: inline-block;
     }
 
-    #intro-text > .line > * {
+    #intro-text > * {
         margin: 2px;
     }
 
@@ -207,18 +207,15 @@
 <div id="home-content">
     <div id="intro">
         <magnon-logo animate></magnon-logo>
-        <h1>Magnon</h1>
+        <h1 aria-hidden="true">Magnon</h1>
         <div id="intro-sub">
-            <div id="intro-text">
-                <span class="line">Trying to push games forward,</span>
-                <span class="line">little at a time</span>
-            </div>
+            <div id="intro-text" aria-label="Trying to push games forward, little at a time"></div>
             <div id="intro-navigation">
                 <magnon-button class="to-games">Our Games</magnon-button>
                 <magnon-button class="to-about">About Us</magnon-button>
             </div>
         </div>
-        <div id="intro-hint">
+        <div id="intro-hint" aria-hidden="true">
             More down here!
             <magnon-icon icon="down"></magnon-icon>
         </div>

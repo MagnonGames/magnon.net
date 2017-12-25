@@ -75,17 +75,19 @@ const runAnimation = async() => {
     const textContainer = document.querySelector("#intro-text");
     const introNavigation = document.querySelector("#intro-navigation");
 
-    const lines = [...textContainer.querySelectorAll(".line")];
-    const lineTexts = lines.map(line => line.textContent);
+    const lines = textContainer.getAttribute("aria-label").split(", ");
 
     const spans = [];
 
     lines.forEach((line, i) => {
-        line.innerHTML = "";
-        lineTexts[i].trim().split(" ").forEach(s => {
+        if (i < lines.length - 1) {
+            line += ",";
+        }
+        line.trim().split(" ").forEach(s => {
             const span = document.createElement("span");
             span.textContent = s;
-            line.appendChild(span);
+            span.setAttribute("aria-hidden", "true");
+            textContainer.appendChild(span);
             spans.push(span);
         });
     });
