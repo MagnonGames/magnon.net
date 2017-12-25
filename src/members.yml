@@ -1,36 +1,21 @@
   - name: Ellie
     alias: magnonellie
-    image: //www.gravatar.com/avatar/ac38bc4935995cccfbf2c6b85dedeee1
-    descriptionTitle: Hi there, Ellie here!
-    description: |
-        I like doing fun stuff. That's why I work on Magnon stuff most
-        of the time! I also like learning Japanese and occasionally even
-        playing games. I don't really play games that often becasue I,
-        uhm... You know... I make them more than I play them. I also
-        really enjoy web development. Anyway, see you around!
+    image: //gravatar.com/avatar/ac38bc4935995cccfbf2c6b85dedeee1
     socialMedia:
         twitter: magnonellie
         github: magnonellie
         bitbucket: magnonellie
   - name: Karl
     alias: CurrayNRice
-    image: //www.gravatar.com/avatar/d1b5f7ed689d1e29178dafb6221ca935
-    descriptionTitle: Hey, my name is Karl.
-    description: |
-        What I do when it comes to Magnon is programming, but what I
-        really love is designing and creating a game that is actually
-        fun to play. I am a PC gamer, mostly because my finger
-        coordination is just horrible. One important thing to note
-        is that I am horrible at spelling.
+    image: //gravatar.com/avatar/d1b5f7ed689d1e29178dafb6221ca935
     socialMedia:
         twitter: CurrayNRice
-        github: CurrayNRice
+        github: CurryNRice
   - name: Max
     alias: maxad
-    image: //www.gravatar.com/avatar/fffe89cd92e3d0d0ad8e4126aad37008
-    descriptionTitle: Greetings! I’m Max.
-    description: |
-        I like graphics, sculpting and animation. Therefore, I’m the
-        one responsible for that part. When not doing graphics
-        related stuff I like to play games or just sleep. I’m not a
-        big fan of social media so Steam is the place.
+    image: //gravatar.com/avatar/fffe89cd92e3d0d0ad8e4126aad37008
+  - name: Isabel
+    alias: Arwenduill
+    image: //gravatar.com/avatar/7b335d66b5a938f385ffa016d21925e6
+    socialMedia:
+        artstation: bellalm
