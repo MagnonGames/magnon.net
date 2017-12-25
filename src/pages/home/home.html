@@ -134,14 +134,24 @@
         max-width: 1500px;
     }
 
-    #members magnon-image {
-        --magnon-image-border-radius: 50%;
+    #members .member {
         flex: 0 1 250px;
         margin: 30px;
         opacity: 0;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .member img {
+        border-radius: 50%;
+        max-width: 500px;
+        height: auto;
     }
 
     .user-social {
+        display: flex;
+        justify-content: center;
         margin-top: 30px;
         --magnon-social-icon-button-color: white;
     }
@@ -242,9 +252,6 @@
                     right!? Uhm, wait, never mind that. Anyway, we're a pretty small
                     team and we love keeping contact with all you people so see you
                     around!
-                    <br><br>
-                    (HINT: Click our faces to read more about us and find social media
-                    to stalk us!)
                 </span>
             </magnon-card>
             <div id="members">

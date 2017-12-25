@@ -29,23 +29,24 @@ export const away = () => {
 const createSocialBubbles = () => {
     const container = document.querySelector("#members");
 
-    members.forEach(member => {
-        member.socialMedia = member.socialMedia || {};
-        const image = new MagnonImage();
-        image.src = `${member.image}?s=500`;
-        image.alt = `${member.name} - ${member.alias}`;
-        image.disableImageUrl = true;
-        image.showAlt = true;
-        image.innerHTML = `
-            <h3 slot="description-title">${member.descriptionTitle}</h3>
-            ${member.description}
-            <div class="user-social">
-                ${Object.keys(member.socialMedia).map(socialMedia => {
-                    const name = `magnon-${socialMedia}-button`;
-                    return `<${name} user="${member.socialMedia[socialMedia]}"></${name}>`;
-                }).join("")}
+    container.innerHTML = members.map(member => {
+        return `
+            <div class="member">
+                <img src="${member.image}?s=500" alt="${member.name}">
+                <div>
+                    <h3>${member.name} - ${member.alias}</h3>
+                    <div class="user-social">
+                        ${Object.keys(member.socialMedia || {}).map(socialMedia => {
+                            const name = `magnon-${socialMedia}-button`;
+                            return `
+                                <${name}
+                                    user="${member.socialMedia[socialMedia]}">
+                                </${name}>
+                            `;
+                        }).join("")}
+                    </div>
+                </div>
             </div>
         `;
-        container.appendChild(image);
-    });
+    }).join("");
 };

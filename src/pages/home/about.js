@@ -13,7 +13,7 @@ export default () => {
         });
 
         anime({
-            targets: "#members > magnon-image",
+            targets: "#members > .member",
             opacity: {
                 value: [0, 1],
                 easing: "linear"
